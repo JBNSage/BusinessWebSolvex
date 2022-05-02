@@ -20,8 +20,8 @@ export default function useAuthentication() {
     sessionStorage.removeItem(userStorage);
   };
 
-  const register = async () => {
-    const response = await apiCalls.register();
+  const register = async (body) => {
+    const response = await apiCalls.register(body);
 
     if (response.data) {
       storeUser(response.data);

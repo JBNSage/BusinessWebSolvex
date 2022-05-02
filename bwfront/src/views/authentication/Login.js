@@ -3,6 +3,7 @@ import { Formik, Form } from "formik";
 import { string, object } from "yup";
 import { TextInput } from "../../components/forms/inputs";
 import { AlertFormError } from "../../components";
+import { Link } from "react-router-dom";
 
 export default function Login({ login }) {
   const [raiseAlert, setRaiseAlert] = useState();
@@ -11,10 +12,7 @@ export default function Login({ login }) {
     //IF LOGIN IS SUCCESSFULL, THE HOOK WILL UPDATE THE ROUTES TREE, IF NOT, THEN WE
     //CAPTURE THE ERROR TO DISPLAY THE ERROR MESSAGE
 
-    const response = await login({
-      email: values.email,
-      password: values.password,
-    });
+    const response = await login(values);
 
     if (response.error) {
       setRaiseAlert();
@@ -22,30 +20,33 @@ export default function Login({ login }) {
   };
 
   return (
-    <Formik
-      validationSchema={validationSchema}
-      initialValues={{
-        email: "",
-        password: "",
-      }}
-      onSubmit={handleSubmit}
-    >
-      <Form>
-        <TextInput
-          placeholder="Correo electrónico"
-          label="Correo electrónico"
-          name="email"
-        />
-        <TextInput
-          placeholder="Contraseña"
-          label="Contraseña"
-          name="password"
-          type="password"
-        />
-        {raiseAlert && <AlertFormError message={"Error"} />}
-        <button type="submit">Iniciar sesión</button>
-      </Form>
-    </Formik>
+    <>
+      <Formik
+        validationSchema={validationSchema}
+        initialValues={{
+          email: "",
+          password: "",
+        }}
+        onSubmit={handleSubmit}
+      >
+        <Form>
+          <TextInput
+            placeholder="Correo electrónico"
+            label="Correo electrónico"
+            name="email"
+          />
+          <TextInput
+            placeholder="Contraseña"
+            label="Contraseña"
+            name="password"
+            type="password"
+          />
+          {raiseAlert && <AlertFormError message={"Error"} />}
+          <button type="submit">Iniciar sesión</button>
+        </Form>
+      </Formik>
+      <Link to="register">Registrarse</Link>
+    </>
   );
 }
 

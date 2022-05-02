@@ -4,7 +4,7 @@ import * as Views from "./views";
 import { useAuthentication } from "./hooks";
 
 export default function AppRoutes() {
-  const { login, user } = useAuthentication();
+  const { login, user, register } = useAuthentication();
   return (
     <BrowserRouter>
       <Routes>
@@ -39,7 +39,10 @@ export default function AppRoutes() {
           <>
             <Route path="/authenticate">
               <Route index element={<Views.Login login={login} />} />
-              <Route path="register" element={<Views.Register />} />
+              <Route
+                path="register"
+                element={<Views.Register login={login} register={register} />}
+              />
               <Route path="reset-password" element={<Views.ResetPassword />} />
             </Route>
             <Route path="*" element={<Navigate to="/authenticate" />} />
