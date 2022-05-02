@@ -1,0 +1,8 @@
+.input_error_message {
+  color: #dc3545;
+  font-size: 11px;
+}
+
+Form .form_input + .form_input {
+  margin-top: 10px;
+}

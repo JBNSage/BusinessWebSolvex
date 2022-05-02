@@ -1,3 +1,8 @@
+//AUTHENTICATION
+export { default as Login } from "./authentication/Login";
+export { default as Register } from "./authentication/Register";
+export { default as ResetPassword } from "./authentication/ResetPassword";
+
 //HOME
 export { default as Home } from "./Home";
 
@@ -8,7 +13,6 @@ export { default as CreditCards } from "./profile/CreditCards";
 export { default as Orders } from "./profile/Orders";
 
 //PRODUCTS
-export { default as Products } from "./products/Products";
 export { default as ProductDetails } from "./products/ProductDetails";
 
 //CATEGORIES

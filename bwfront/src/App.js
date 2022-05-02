@@ -1,3 +1,4 @@
+import Routes from "./Routes";
 export default function App() {
-  return null;
+  return <Routes />;
 }
