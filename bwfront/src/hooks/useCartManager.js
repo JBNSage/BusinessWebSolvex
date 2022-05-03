@@ -53,29 +53,31 @@ export default function useCartManager() {
 
   const updateQuantity = (productId, quantity) => {
     let cartTMP = [...cart];
-    console.log(
-      "🚀 ~ file: useCartManager.js ~ line 40 ~ updateQuantity ~ cartTMP",
-      cartTMP
-    );
 
     const cartItemIndex = cartTMP.findIndex(
       (cartItem) => cartItem.product.id == productId
     );
-    console.log(
-      "🚀 ~ file: useCartManager.js ~ line 45 ~ updateQuantity ~ cartItemIndex",
-      cartItemIndex
-    );
 
     let cartItem = cartTMP[cartItemIndex];
 
-    cartItem.quantity = quantity;
+    cartItem.quantity = parseInt(quantity);
 
     cartTMP[cartItemIndex] = cartItem;
 
     updateCart(cartTMP);
   };
 
-  const removeFromCart = (productId, quantity) => {};
+  const removeFromCart = (productId) => {
+    let cartTMP = [...cart];
+
+    const cartItemIndex = cartTMP.findIndex(
+      (cartItem) => cartItem.product.id == productId
+    );
+
+    cartTMP.splice(cartItemIndex, 1);
+
+    updateCart(cartTMP);
+  };
 
   return {
     addToCart,
