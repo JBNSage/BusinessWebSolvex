@@ -4,6 +4,10 @@ import { Link, useSearchParams } from "react-router-dom";
 export default function Products() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { products, getProducts } = useProductsManager();
+  console.log(
+    "🚀 ~ file: Products.js ~ line 7 ~ Products ~ products",
+    products
+  );
 
   React.useEffect(() => {
     const query = `category=${searchParams.get("category")}`;

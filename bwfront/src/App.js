@@ -1,4 +1,9 @@
 import Routes from "./Routes";
+import AppContextProvider from "./contexts/AppContext";
 export default function App() {
-  return <Routes />;
+  return (
+    <AppContextProvider>
+      <Routes />
+    </AppContextProvider>
+  );
 }

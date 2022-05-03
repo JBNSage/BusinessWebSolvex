@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useCartManager, useProductsManager } from "../../hooks";
+import { useAppContext } from "../../contexts/AppContext";
+import { useProductsManager } from "../../hooks";
 
 export default function ProductDetails() {
   const { productId } = useParams();
   const { singleProduct, getProductById } = useProductsManager();
-  const { addToCart, getCartProduct } = useCartManager();
+  const { addToCart, getCartProduct } = useAppContext();
   const [isInCart, setIsInCart] = useState(false);
 
   React.useEffect(() => {

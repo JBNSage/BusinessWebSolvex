@@ -6,10 +6,6 @@ export default function useProductsManager() {
   const [singleProduct, setSingleProduct] = useState();
 
   const getProducts = (query) => {
-    console.log(
-      "🚀 ~ file: useProductsManager.js ~ line 8 ~ getProducts ~ query",
-      query
-    );
     apiCalls.getProducts().then((response) => {
       if (response.data) {
         setProducts(response.data);

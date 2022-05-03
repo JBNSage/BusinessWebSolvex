@@ -1,8 +1,12 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./siteContentContainer.css";
+import { useCartManager } from "../../hooks";
+import { useAppContext } from "../../contexts/AppContext";
 
 export default function SiteHeader() {
+  const { cartItems } = useAppContext();
+
   return (
     <>
       <header className="row container">
@@ -15,6 +19,9 @@ export default function SiteHeader() {
             <li>
               <Link to="checkout">
                 <span className="material-icons-outlined">shopping_cart</span>
+                {cartItems > 0 && (
+                  <span class="badge bg-secondary">{cartItems}</span>
+                )}
               </Link>
             </li>
             <li>
