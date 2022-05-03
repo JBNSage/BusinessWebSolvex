@@ -53,7 +53,7 @@ export default function Login({ login }) {
 
 const validationSchema = object({
   email: string()
-    .email("El correo debe ser un correo válido")
-    .required("Este campo es obligatorio"),
-  password: string().required("Este campo es obligatorio"),
+    .email("It must be a valid email")
+    .required("This field is required"),
+  password: string().required("This field is required"),
 });

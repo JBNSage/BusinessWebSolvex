@@ -2,6 +2,9 @@ export const serverDomain = "";
 
 export const userStorage = "authUser";
 export const cartStorage = "cart_items";
+export const paymentMethodStorage = "payment_method";
+export const tax = 0.18;
+export const deliveryCost = 100;
 
 export const dataDummies = {
   categories: [
@@ -28,7 +31,7 @@ export const dataDummies = {
     {
       id: 1,
       name: "Crema de afeitar",
-      price: 200,
+      price: 3000,
       quantity: 100,
       provider: 1,
       rating: 4,
@@ -41,7 +44,7 @@ export const dataDummies = {
     {
       id: 2,
       name: "Crema de afeitar",
-      price: 200,
+      price: 1000,
       quantity: 100,
       provider: 1,
       rating: 4,
@@ -54,7 +57,7 @@ export const dataDummies = {
     {
       id: 3,
       name: "Crema de afeitar",
-      price: 200,
+      price: 2000,
       quantity: 100,
       provider: 1,
       category: 3,
@@ -98,16 +101,18 @@ export const dataDummies = {
       {
         id: 1,
         user: 1,
+        name: "JUAN LUIS",
         number: "81092344",
-        cvv: 123,
-        due_date: new Date(),
+        cvv: "123",
+        expiration_date: new Date(),
       },
       {
         id: 2,
         user: 1,
+        name: "JUAN LUIS",
         number: "423413312",
-        cvv: 122,
-        due_date: new Date(),
+        cvv: "122",
+        expiration_date: new Date(),
       },
     ],
   },
@@ -150,24 +155,28 @@ export const dataDummies = {
     {
       id: 1,
       user: 1,
-      product: 1,
-      price: 200,
-      discount: null,
-      type: "delivery",
+      total: 200,
+      shipping_cost: 200,
+      order_details: [{ order_id: 1, product_id: 1, price: 200 }],
+      state: "canceled",
+      card: { last_digits: 3455, type: "visa" },
       estimated_arrival: new Date(),
-      arrived_at: new Date(),
+      arrived_at: null,
+      canceled_at: new Date(),
       created_at: new Date(),
       updated_at: new Date(),
     },
     {
-      id: 1,
+      id: 2,
       user: 1,
-      product: 2,
-      price: 500,
-      discount: { percentage_discounted: 0.1, reason: "coupon" },
-      type: "delivery",
+      total: 200,
+      shipping_cost: 200,
+      order_details: [{ order_id: 1, product_id: 1, price: 200 }],
+      state: "shipping",
+      card: { last_digits: 3455, type: "visa" },
       estimated_arrival: new Date(),
-      arrived_at: new Date(),
+      arrived_at: null,
+      canceled_at: null,
       created_at: new Date(),
       updated_at: new Date(),
     },

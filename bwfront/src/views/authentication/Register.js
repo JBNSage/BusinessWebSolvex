@@ -70,13 +70,13 @@ export default function Register({ login, register }) {
 }
 
 const validationSchema = object({
-  firstName: string().required("Este campo es obligatorio"),
-  lastName: string().required("Este campo es obligatorio"),
+  firstName: string().required("This field is required"),
+  lastName: string().required("This field is required"),
   email: string()
-    .email("El correo debe ser un correo válido")
-    .required("El correo debe ser un correo válido"),
-  password: string().required("Este campo es obligatorio"),
+    .email("It must be a valid email")
+    .required("It must be a valid email"),
+  password: string().required("This field is required"),
   confirmPassword: string()
-    .oneOf([ref("password"), null], "Las contraseñas deben ser iguales")
-    .required("Las contraseñas deben ser iguales"),
+    .oneOf([ref("password"), null], "Passwords must be equal")
+    .required("Passwords must be equal"),
 });

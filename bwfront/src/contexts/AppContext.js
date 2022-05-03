@@ -8,12 +8,19 @@ export function useAppContext() {
 }
 
 export default function AppContextProvider({ children }) {
-  const { addToCart, removeFromCart, getCartProduct, updateQuantity, cart } =
-    useCartManager();
+  const {
+    addToCart,
+    removeFromCart,
+    getCartProduct,
+    updateQuantity,
+    cart,
+    calculateCartTotal,
+  } = useCartManager();
 
   return (
     <AppContext.Provider
       value={{
+        calculateCartTotal,
         addToCart,
         removeFromCart,
         getCartProduct,

@@ -7,9 +7,13 @@ export const apiCalls = {
   getProducts: () => getData(apiRoutes.products),
   getProductById: (id) => getData(apiRoutes.products, id),
   getCategories: () => getData(apiRoutes.categories),
+  createOrder: (body) => postData(apiRoutes.orders, body),
   getOrders: () => getData(apiRoutes.orders),
   getCountries: () => getData(apiRoutes.countries),
+  addCreditCard: (body) => postData(apiRoutes.credit_cards, body),
   getCreditCards: () => getData(apiRoutes.credit_cards),
+  deleteCreditCard: (cardId) => deleteData(apiRoutes.credit_cards, cardId),
+
   // changePassword: (id, body) => updateData(apiRoutes.users, id, body),
 };
 
@@ -36,6 +40,24 @@ const postData = async (route, body) => {
 
   try {
     const requestResponse = route;
+
+    response.data = requestResponse;
+  } catch (error) {
+    console.log("🚀 ~ file: apiCalls.js ~ line 14 ~ getData ~ error", error);
+    response.error = error;
+  }
+  return response;
+};
+
+const deleteData = async (route, id) => {
+  var response = { data: undefined, error: undefined };
+
+  try {
+    var requestResponseIndex = route.findIndex((element) => element.id == id);
+
+    var requestResponse = route;
+
+    requestResponse.splice(requestResponseIndex, 1);
 
     response.data = requestResponse;
   } catch (error) {

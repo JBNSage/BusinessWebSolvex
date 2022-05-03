@@ -23,4 +23,5 @@ export { default as Categories } from "./Categories";
 export { default as BuyNow } from "./checkout/BuyNow";
 export { default as Cart } from "./checkout/Cart";
 export { default as PreviewOrder } from "./checkout/PreviewOrder";
-export { default as OrderPlaced } from "./checkout/OrderPlaced";
+export { default as PlaceOrder } from "./checkout/PlaceOrder";
+export { default as PaymentMethod } from "./checkout/PaymentMethod";

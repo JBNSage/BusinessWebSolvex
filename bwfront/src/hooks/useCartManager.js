@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { cartStorage } from "../utilities/constants";
+import { cartStorage, deliveryCost, tax } from "../utilities/constants";
+import { numberWithCommas } from "../utilities/parsers";
 
 export default function useCartManager() {
   const [cart, setCart] = useState([]);
@@ -79,11 +80,29 @@ export default function useCartManager() {
     updateCart(cartTMP);
   };
 
+  const calculateCartTotal = () => {
+    var total = 0;
+    if (cart.length > 0) {
+      total = cart.reduce(
+        (previousValue, currentItem) =>
+          previousValue + currentItem.product.price * currentItem.quantity,
+        0
+      );
+    }
+    return {
+      subTotal: numberWithCommas(total),
+      tax: tax * 100,
+      shipping: deliveryCost,
+      total: numberWithCommas(total * (tax + 1) + deliveryCost),
+    };
+  };
+
   return {
     addToCart,
     updateQuantity,
     removeFromCart,
     getCartProduct,
+    calculateCartTotal,
     cart,
   };
 }

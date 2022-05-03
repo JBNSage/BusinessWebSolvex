@@ -31,9 +31,10 @@ export default function AppRoutes() {
               <Route path="checkout">
                 <Route index element={<Views.Cart />} />
                 <Route path="preview-order" element={<Views.PreviewOrder />} />
+                <Route path="place-order" element={<Views.PlaceOrder />} />
                 <Route
-                  path="order-placed/:orderId"
-                  element={<Views.OrderPlaced />}
+                  path="payment-method"
+                  element={<Views.PaymentMethod />}
                 />
                 <Route path="buy-now" element={<Views.BuyNow />} />
               </Route>
