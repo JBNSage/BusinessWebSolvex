@@ -8,17 +8,17 @@ export function useAppContext() {
 }
 
 export default function AppContextProvider({ children }) {
-  const { items, addToCart, removeFromCart, getCartProduct, updateQuantity } =
+  const { addToCart, removeFromCart, getCartProduct, updateQuantity, cart } =
     useCartManager();
 
   return (
     <AppContext.Provider
       value={{
-        cartItems: items,
         addToCart,
         removeFromCart,
         getCartProduct,
         updateQuantity,
+        cart,
       }}
     >
       {children}

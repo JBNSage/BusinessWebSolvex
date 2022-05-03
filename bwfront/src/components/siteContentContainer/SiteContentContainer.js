@@ -5,7 +5,7 @@ import { useCartManager } from "../../hooks";
 import { useAppContext } from "../../contexts/AppContext";
 
 export default function SiteHeader() {
-  const { cartItems } = useAppContext();
+  const { cart } = useAppContext();
 
   return (
     <>
@@ -19,8 +19,8 @@ export default function SiteHeader() {
             <li>
               <Link to="checkout">
                 <span className="material-icons-outlined">shopping_cart</span>
-                {cartItems > 0 && (
-                  <span class="badge bg-secondary">{cartItems}</span>
+                {cart?.length > 0 && (
+                  <span className="badge bg-secondary">{cart?.length}</span>
                 )}
               </Link>
             </li>

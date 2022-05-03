@@ -10,9 +10,9 @@ export default function ProductDetails() {
   const [isInCart, setIsInCart] = useState(false);
 
   React.useEffect(() => {
-    getProductById(productId);
+    getProductById(parseInt(productId));
 
-    let product = getCartProduct(productId);
+    let product = getCartProduct(parseInt(productId));
 
     if (product) {
       setIsInCart(true);

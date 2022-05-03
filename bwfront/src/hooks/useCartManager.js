@@ -1,45 +1,79 @@
-import React from "react";
+import React, { useState } from "react";
 import { cartStorage } from "../utilities/constants";
 
 export default function useCartManager() {
-  const getCart = () => {
-    return JSON.parse(localStorage.getItem(cartStorage));
-  };
+  const [cart, setCart] = useState([]);
 
-  const [items, setItems] = React.useState(getCart()?.length);
+  React.useEffect(() => {
+    setCart(getCart());
+  }, []);
+
+  const getCart = () => {
+    const storedCart = JSON.parse(localStorage.getItem(cartStorage));
+
+    if (storedCart) {
+      return storedCart;
+    }
+
+    return [];
+  };
 
   const addToCart = (product) => {
     const body = { product, quantity: 1 };
-    let cart = getCart();
+    let cartTMP = [...cart];
 
-    if (cart) {
-      cart.push(body);
+    if (cartTMP) {
+      cartTMP.push(body);
     } else {
-      cart = [body];
+      cartTMP = [body];
     }
-    console.log(
-      "🚀 ~ file: useCartManager.js ~ line 8 ~ addToCart ~ cart",
-      cart
-    );
 
-    setCart(cart);
+    updateCart(cartTMP);
   };
 
   const getCartProduct = (productId) => {
-    let cart = getCart();
+    let cartTMP = [...cart];
 
-    if (cart) {
-      return cart.find((cartItem) => cartItem.product.id == productId);
+    if (cartTMP) {
+      return cartTMP.find((cartItem) => {
+        console.log(
+          "🚀 ~ file: useCartManager.js ~ line 29 ~ returncartTMP.find ~ cartItem",
+          cartItem
+        );
+        return cartItem.product.id == productId;
+      });
     }
     return undefined;
   };
 
-  const setCart = (cart) => {
-    localStorage.setItem(cartStorage, JSON.stringify(cart));
-    setItems(cart.length);
+  const updateCart = (cartTMP) => {
+    localStorage.setItem(cartStorage, JSON.stringify(cartTMP));
+    setCart(cartTMP);
   };
 
-  const updateQuantity = (productId, quantity) => {};
+  const updateQuantity = (productId, quantity) => {
+    let cartTMP = [...cart];
+    console.log(
+      "🚀 ~ file: useCartManager.js ~ line 40 ~ updateQuantity ~ cartTMP",
+      cartTMP
+    );
+
+    const cartItemIndex = cartTMP.findIndex(
+      (cartItem) => cartItem.product.id == productId
+    );
+    console.log(
+      "🚀 ~ file: useCartManager.js ~ line 45 ~ updateQuantity ~ cartItemIndex",
+      cartItemIndex
+    );
+
+    let cartItem = cartTMP[cartItemIndex];
+
+    cartItem.quantity = quantity;
+
+    cartTMP[cartItemIndex] = cartItem;
+
+    updateCart(cartTMP);
+  };
 
   const removeFromCart = (productId, quantity) => {};
 
@@ -48,6 +82,6 @@ export default function useCartManager() {
     updateQuantity,
     removeFromCart,
     getCartProduct,
-    items,
+    cart,
   };
 }

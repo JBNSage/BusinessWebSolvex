@@ -18,7 +18,7 @@ const getData = async (route, id) => {
 
   try {
     if (id) {
-      var requestResponse = route.find((element) => (element.id = id));
+      var requestResponse = route.find((element) => element.id == id);
     } else {
       var requestResponse = route;
     }
