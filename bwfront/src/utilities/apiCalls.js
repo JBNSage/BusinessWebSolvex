@@ -5,6 +5,7 @@ export const apiCalls = {
   register: (body) => postData(apiRoutes.register, body),
   login: (body) => postData(apiRoutes.login, body),
   getProducts: () => getData(apiRoutes.products),
+  getProductById: (id) => getData(apiRoutes.products, id),
   getCategories: () => getData(apiRoutes.categories),
   getOrders: () => getData(apiRoutes.orders),
   getCountries: () => getData(apiRoutes.countries),
@@ -12,11 +13,15 @@ export const apiCalls = {
   // changePassword: (id, body) => updateData(apiRoutes.users, id, body),
 };
 
-const getData = async (route) => {
+const getData = async (route, id) => {
   var response = { data: undefined, error: undefined };
 
   try {
-    const requestResponse = route;
+    if (id) {
+      var requestResponse = route.find((element) => (element.id = id));
+    } else {
+      var requestResponse = route;
+    }
 
     response.data = requestResponse;
   } catch (error) {

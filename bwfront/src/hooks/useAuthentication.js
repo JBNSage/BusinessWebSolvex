@@ -3,7 +3,14 @@ import { apiCalls } from "../utilities/apiCalls";
 import { userStorage } from "../utilities/constants";
 
 export default function useAuthentication() {
-  const [user, setUser] = useState();
+  const retrieveUser = () => {
+    const storedUser = JSON.parse(sessionStorage.getItem(userStorage));
+    if (storedUser) {
+      return storedUser;
+    }
+  };
+
+  const [user, setUser] = useState(retrieveUser());
 
   const login = async (body) => {
     const response = await apiCalls.login(body);

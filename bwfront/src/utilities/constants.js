@@ -1,20 +1,27 @@
 export const serverDomain = "";
 
 export const userStorage = "authUser";
+export const cartStorage = "cart_items";
 
 export const dataDummies = {
   categories: [
     {
       id: 1,
       name: "electronics",
+      picture:
+        "https://s3-alpha-sig.figma.com/img/530f/7e16/05ec8831229db4c181b79227cb934d13?Expires=1652659200&Signature=KOqv3OiR9k14C~knqWQ1~FwheH6OwBYrrnnctIkhXdg6yiA1cWG7KfjYXZu1zMVcY7FBhrE1kZv-s4-16hYVe8fTfvvTl-X6yXub7tSuQCh-pERQbeIfAoE7kNsZqY6nBf~3l4syooUDrg3ly9xT2P5gb-gdYinxryRwzGOpNMse-qwSfXYNS4apchuUe8Y8Z2JDs5OGfql2himK3A1WKv5I0sbYszpcak4TuT~X-QcQaCWJ-WY8c1xMKgOdIm2FPbAwkkiHAmPxWCZJzZdZJS01e2aq48zSfceSvcyJvfVYENVY4JOhoCpzIczB9JgvkT9x1vHmk--SaSbQkNg-iQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
     },
     {
       id: 2,
       name: "footwear",
+      picture:
+        "https://s3-alpha-sig.figma.com/img/b7e5/5f8b/1e759fe105f5944d9d774ebf79876db6?Expires=1652659200&Signature=YfoKpE2VOG0Ot54UWmDzON3beqjfPOeKFPoe4nAi1Y9c9DoVPo4uBNQRqeV0IXZP0QtMal83TJLpjCqYF4zGAgcLZ7p1pg2TRtViXRIsSxuKuwkc7IThZEQW7oeyy06vYKeE8yIqoXEDrpTNxuqRrxh0NHSVzJZrSt1PQpE8xt76pUoH5P-WC5gdP0XeTTSa7DCAeJsId7nZWG9t5~RnKKmakoFKENjEX0gUU5iNWnR4PHoBZOCGduShUGfA-g6aNTGUK1sWD-t15dhjkg5nNoT0niEE3mKa6zbuqrMIZhk1URBLsNHu0~VO8CItMkYaYr805M7nY3tTTAu-ae8s2A__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
     },
     {
       id: 3,
       name: "games",
+      picture:
+        "https://s3-alpha-sig.figma.com/img/843f/3e7c/a7edd91d3af41ec2d3833247ce8604c2?Expires=1652659200&Signature=e4YrjFbQ4GmV5hBJNizDv7CCl8~cL5Epp2MxPCvmqWzTigS43l57ETqhEzLoOPdQ7SyJMVU9YUey8Y93np7zEGlJjFifJN5bq98X~xUls0VzfdVicCdZ6UGCvUteWnUDCW32wczLx8VYoL5NusCQMS5fUZjrrVZglDC4BY5fKVsSdS0V9sKk7Q7hDIQa2SCk6wXrw1DB9RDP7cWyjJ8nZUkjHih375GJarsbKB1~TVcYx9zNLdtg5mu7XcElZL2bP6mVfocttB78keqrTJ9O~a-xruGYBEU7XQvUN7~XcZovFAbC-Y3~yw4BNdzhuS064l29wF8rdldVDxSzkULFgA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
     },
   ],
   products: [

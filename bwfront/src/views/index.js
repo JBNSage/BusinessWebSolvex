@@ -14,6 +14,7 @@ export { default as Orders } from "./profile/Orders";
 
 //PRODUCTS
 export { default as ProductDetails } from "./products/ProductDetails";
+export { default as Products } from "./products/Products";
 
 //CATEGORIES
 export { default as Categories } from "./Categories";

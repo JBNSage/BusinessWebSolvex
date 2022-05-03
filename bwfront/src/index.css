@@ -1,0 +1,15 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.home_category .home_category_picture {
+  width: 200px;
+  height: auto;
+}
+
+.home_categories_container .home_category {
+  text-decoration: none;
+  color: #000;
+}

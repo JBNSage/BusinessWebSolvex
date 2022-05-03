@@ -46,6 +46,7 @@ export default function Login({ login }) {
         </Form>
       </Formik>
       <Link to="register">Registrarse</Link>
+      <Link to="reset-password">¿Olvidó su contraseña?</Link>
     </>
   );
 }

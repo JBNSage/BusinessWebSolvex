@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import * as Views from "./views";
 import { useAuthentication } from "./hooks";
+import { SiteContentContainer } from "./components";
 
 export default function AppRoutes() {
   const { login, user, register } = useAuthentication();
@@ -10,13 +11,17 @@ export default function AppRoutes() {
       <Routes>
         {user ? (
           <>
-            <Route path="/">
+            <Route path="/" element={<SiteContentContainer />}>
               <Route index element={<Views.Home />} />
               <Route path="categories" element={<Views.Categories />} />
-              <Route
-                path="products/product-details/:productId"
-                element={<Views.ProductDetails />}
-              />
+              <Route path="products">
+                <Route index element={<Views.Products />} />
+                <Route
+                  path="product-details/:productId"
+                  element={<Views.ProductDetails />}
+                />
+              </Route>
+
               <Route path="profile">
                 <Route index element={<Views.Profile />} />
                 <Route path="addresses" element={<Views.Adresses />} />
