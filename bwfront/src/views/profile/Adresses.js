@@ -103,7 +103,7 @@ export default function Addresses() {
                 delete address
               </button>
               <ModalForm
-                id="editAddress"
+                id={`editAddress-${address.id}`}
                 onOpen={() => getCountryCities(address.city.country)}
                 title="Edit address"
                 values={{

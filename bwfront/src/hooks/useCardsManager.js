@@ -7,18 +7,26 @@ export default function useCardsManager() {
   const { user } = useAuthentication();
 
   const getCards = () => {
-    setCards(user.credit_cards);
+    apiCalls.getCreditCards().then((response) => {
+      if (response.data) {
+        setCards(response.data);
+      }
+    });
   };
 
-  const addCard = (body) => {
-    apiCalls.addCreditCard();
+  const addCard = async (body) => {
+    await apiCalls.addCreditCard();
     getCards();
   };
 
-  const deleteCard = (cardId) => {
-    apiCalls.deleteCreditCard(cardId);
+  const deleteCard = async (cardId) => {
+    await apiCalls.deleteCreditCard(cardId);
+    getCards();
+  };
+  const editCard = async (cardId, body) => {
+    await apiCalls.editCreditCard(cardId, body);
     getCards();
   };
 
-  return { cards, getCards, addCard, deleteCard };
+  return { cards, getCards, addCard, deleteCard, editCard };
 }

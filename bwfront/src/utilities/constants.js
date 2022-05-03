@@ -206,17 +206,19 @@ export const dataDummies = {
   credit_cards: [
     {
       id: 1,
+      name: "juan",
       user: 1,
       number: "81092344",
       cvv: 123,
-      due_date: new Date(),
+      expiration_date: new Date(),
     },
     {
       id: 2,
       user: 1,
+      name: "julio",
       number: "423413312",
       cvv: 122,
-      due_date: new Date(),
+      expiration_date: new Date(),
     },
   ],
 };
