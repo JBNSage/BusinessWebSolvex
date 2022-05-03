@@ -38,7 +38,7 @@ export default function PaymentMethod() {
       ))}
 
       <ModalForm
-        title="Agregar método de pago"
+        title="Add payment method"
         values={{
           user: user.id,
           name: "",

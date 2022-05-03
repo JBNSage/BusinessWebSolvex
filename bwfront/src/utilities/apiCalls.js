@@ -14,6 +14,9 @@ export const apiCalls = {
   getCreditCards: () => getData(apiRoutes.credit_cards),
   deleteCreditCard: (cardId) => deleteData(apiRoutes.credit_cards, cardId),
   addAddress: (body) => postData(apiRoutes.address, body),
+  deleteAddress: (addressId) => deleteData(apiRoutes.address, addressId),
+  updateAddress: (addressId, body) =>
+    updateData(apiRoutes.address, addressId, body),
 
   // changePassword: (id, body) => updateData(apiRoutes.users, id, body),
 };
@@ -41,6 +44,24 @@ const postData = async (route, body) => {
 
   try {
     const requestResponse = route;
+
+    response.data = requestResponse;
+  } catch (error) {
+    console.log("🚀 ~ file: apiCalls.js ~ line 14 ~ getData ~ error", error);
+    response.error = error;
+  }
+  return response;
+};
+
+const updateData = async (route, id, body) => {
+  var response = { data: undefined, error: undefined };
+
+  try {
+    var requestResponseIndex = route.findIndex((element) => element.id == id);
+
+    var requestResponse = route;
+
+    requestResponse.splice(requestResponseIndex, 1);
 
     response.data = requestResponse;
   } catch (error) {

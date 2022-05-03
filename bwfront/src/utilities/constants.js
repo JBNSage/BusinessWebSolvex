@@ -94,7 +94,11 @@ export const dataDummies = {
         street: "Villa mella, crossing 1",
         building: "23",
         postal_code: "4431",
-        city: 1,
+        city: {
+          id: 2,
+          name: "Boston",
+          country: 2,
+        },
       },
     ],
     credit_cards: [
@@ -162,7 +166,11 @@ export const dataDummies = {
       street: "Villa mella, crossing 1",
       building: "23",
       postal_code: "4431",
-      city: 1,
+      city: {
+        id: 2,
+        name: "Boston",
+        country: 2,
+      },
     },
   ],
   orders: [

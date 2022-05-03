@@ -49,12 +49,10 @@ export function SelectInput({
     <option
       key={index}
       value={
-        typeof option[0] == "string" || !optionValue
-          ? JSON.stringify(option)
-          : option[optionValue]
+        typeof option == "string" || !optionValue ? option : option[optionValue]
       }
     >
-      {typeof options[0] == "string" ? option : option[optionLabel]}
+      {typeof option == "string" ? option : option[optionLabel]}
     </option>
   ));
 

@@ -10,11 +10,16 @@ export default function ModalForm({
   values,
   callback,
   actionButtonText,
+  onOpen,
+  id = "genericForm",
 }) {
   const modalRef = createRef();
   const [currentModal, setCurrentModal] = React.useState();
 
   const openModal = () => {
+    if (onOpen) {
+      onOpen();
+    }
     const modal = new window.bootstrap.Modal(modalRef.current);
     setCurrentModal(modal);
     modal.show();
@@ -50,7 +55,7 @@ export default function ModalForm({
                   closeModal();
                 }}
               >
-                <Form id="addCardForm">{children}</Form>
+                <Form id={id}>{children}</Form>
               </Formik>
             </div>
             <div className="modal-footer">
@@ -65,7 +70,7 @@ export default function ModalForm({
                 type="submit"
                 className="btn btn-primary"
                 value="Save changes"
-                form="addCardForm"
+                form={id}
               />
             </div>
           </div>

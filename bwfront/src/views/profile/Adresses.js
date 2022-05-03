@@ -8,10 +8,12 @@ import {
 } from "../../hooks";
 import { date, number, object, string } from "yup";
 
-export default function Adresses() {
-  const { addresses, getAddresses, addAddress } = useAddressesManager();
+export default function Addresses() {
+  const { addresses, getAddresses, addAddress, deleteAddress, updateAddress } =
+    useAddressesManager();
   const { countries, getCountries } = useCountriesManager();
   const [selectedCountry, setSelectedCountry] = useState();
+  const [currentCities, setCurrentCities] = useState();
 
   const { user } = useAuthentication();
   React.useEffect(() => {
@@ -19,17 +21,110 @@ export default function Adresses() {
     getCountries();
   }, []);
 
-  const handleFormSubmit = (values) => {
+  const handleFormSubmitOnCreate = (values) => {
+    console.log("create", values);
     addAddress(values);
   };
+
+  const handleFormSubmitOnUpdate = (values) => {
+    const { addressId, ...body } = values;
+
+    updateAddress(addressId, body);
+  };
+
+  const getCountryCities = (countryId) => {
+    var countryTMP = undefined;
+    if (countryId) {
+      countryTMP = countries.find((country) => country.id == countryId);
+    }
+
+    setCurrentCities(countryTMP?.cities);
+    setSelectedCountry(countryTMP?.id);
+  };
+
+  const inputs = (
+    <>
+      <TextInput name="street" label="Street" placeholder="Street" />
+      <TextInput
+        name="building"
+        label="Building, house, etc..."
+        placeholder="Building, house, etc..."
+      />
+      <TextInput
+        type="number"
+        name="postal_code"
+        label="Zip code"
+        placeholder="Zip code"
+      />
+      {countries && (
+        <>
+          <SelectInput
+            name="country"
+            label="Country"
+            placeholder="Country"
+            options={countries}
+            value={selectedCountry}
+            optionValue="id"
+            optionLabel="name"
+            onChange={(e) => {
+              if (e.target.value) {
+                getCountryCities(e.target.value);
+                return;
+              }
+              getCountryCities(undefined);
+            }}
+          />
+
+          <SelectInput
+            name="city"
+            label="City"
+            placeholder="City"
+            options={currentCities}
+            optionLabel="name"
+            optionValue="id"
+          />
+        </>
+      )}
+    </>
+  );
 
   return (
     <div>
       {!addresses || addresses.length == 0
         ? "Aún no tiene direcciones"
-        : addresses.map((address) => address.id)}
+        : addresses.map((address, index) => (
+            <div key={index}>
+              {address.id}
+              <button
+                onClick={() => {
+                  deleteAddress(address.id);
+                }}
+              >
+                delete address
+              </button>
+              <ModalForm
+                id="editAddress"
+                onOpen={() => getCountryCities(address.city.country)}
+                title="Edit address"
+                values={{
+                  addressId: address.id,
+                  user: user.id,
+                  street: address.street,
+                  building: address.building,
+                  postal_code: address.postal_code,
+                  city: address.city.id,
+                }}
+                callback={handleFormSubmitOnUpdate}
+                validationSchema={validationSchema}
+                actionButtonText="Edit address"
+              >
+                {inputs}
+              </ModalForm>
+            </div>
+          ))}
       <ModalForm
-        title="Agregar método de pago"
+        id="addAddress"
+        title="Add address"
         values={{
           user: user.id,
           street: "",
@@ -37,49 +132,11 @@ export default function Adresses() {
           postal_code: "",
           city: "",
         }}
-        callback={handleFormSubmit}
+        callback={handleFormSubmitOnCreate}
         validationSchema={validationSchema}
-        actionButtonText="Add payment method"
+        actionButtonText="Add address"
       >
-        <TextInput name="street" label="Street" placeholder="Street" />
-        <TextInput
-          name="building"
-          label="Building, house, etc..."
-          placeholder="Building, house, etc..."
-        />
-        <TextInput
-          type="number"
-          name="postal_code"
-          label="Zip code"
-          placeholder="Zip code"
-        />
-        {countries && (
-          <SelectInput
-            name="country"
-            label="Country"
-            placeholder="Country"
-            options={countries}
-            optionLabel="name"
-            onChange={(e) => {
-              if (e.target.value) {
-                setSelectedCountry(JSON.parse(e.target.value));
-                return;
-              }
-              setSelectedCountry(undefined);
-            }}
-          />
-        )}
-
-        {countries && (
-          <SelectInput
-            name="city"
-            label="City"
-            placeholder="City"
-            options={selectedCountry?.cities}
-            optionLabel="name"
-            optionValue="id"
-          />
-        )}
+        {inputs}
       </ModalForm>
     </div>
   );

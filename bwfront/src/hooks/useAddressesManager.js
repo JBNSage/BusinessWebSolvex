@@ -21,11 +21,43 @@ export default function useAddressesManager() {
 
     getAddresses();
   };
-  const deleteAddress = () => {};
+  const deleteAddress = (addressId) => {
+    apiCalls.deleteAddress(addressId).then((response) => {
+      if (response.data) {
+        var userTMP = JSON.parse(JSON.stringify(user));
+
+        const addressIndex = userTMP.addresses.findIndex(
+          (address) => address.id == addressId
+        );
+
+        userTMP.splice(addressIndex, 1);
+
+        storeUser(userTMP);
+      }
+    });
+    getAddresses();
+  };
+  const updateAddress = (addressId, body) => {
+    apiCalls.updateAddress(addressId, body).then((response) => {
+      if (response.data) {
+        var userTMP = JSON.parse(JSON.stringify(user));
+
+        const addressIndex = userTMP.addresses.findIndex(
+          (address) => address.id == addressId
+        );
+
+        userTMP[addressIndex] = response.data;
+
+        storeUser(userTMP);
+      }
+    });
+    getAddresses();
+  };
   return {
     getAddresses,
     addAddress,
     deleteAddress,
+    updateAddress,
     addresses,
   };
 }
