@@ -12,7 +12,9 @@ export default function SiteHeader() {
       <header className="row container">
         <div className="nav_col col"></div>
         <div className="logo_col col">
-          <img src={require("../../assets/abstergo.png")} alt="site_logo" />
+          <Link to="/">
+            <img src={require("../../assets/abstergo.png")} alt="site_logo" />
+          </Link>
         </div>
         <div className="account_col col">
           <menu>
