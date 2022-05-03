@@ -121,11 +121,25 @@ export const dataDummies = {
       id: 1,
       name: "República Dominicana",
       flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Flag_of_the_Dominican_Republic.svg/300px-Flag_of_the_Dominican_Republic.svg.png",
+      cities: [
+        {
+          id: 1,
+          name: "Santo Domingo",
+          country: 1,
+        },
+      ],
     },
     {
       id: 2,
       name: "Estados Unidos",
       flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/300px-Flag_of_the_United_States.svg.png",
+      cities: [
+        {
+          id: 2,
+          name: "Boston",
+          country: 2,
+        },
+      ],
     },
   ],
 
@@ -207,4 +221,5 @@ export const apiRoutes = {
   countries: dataDummies.countries,
   credit_cards: dataDummies.credit_cards,
   categories: dataDummies.categories,
+  address: "",
 };

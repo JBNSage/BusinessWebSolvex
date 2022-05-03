@@ -42,5 +42,5 @@ export default function useAuthentication() {
     sessionStorage.setItem(userStorage, JSON.stringify(responseData));
   };
 
-  return { login, register, logout, resetPassword, user };
+  return { login, register, logout, resetPassword, user, storeUser };
 }

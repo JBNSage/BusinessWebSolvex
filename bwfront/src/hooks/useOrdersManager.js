@@ -41,9 +41,15 @@ export default function useOrdersManager() {
     return undefined;
   };
 
-  const getOrders = () => {};
+  const getOrders = () => {
+    apiCalls.getOrders().then((response) => {
+      if (response.data) {
+        setOrders(response.data);
+      }
+    });
+  };
 
   const cancelOrder = () => {};
 
-  return { createOrder, cancelOrder, getOrders };
+  return { orders, createOrder, cancelOrder, getOrders };
 }

@@ -13,6 +13,7 @@ export const apiCalls = {
   addCreditCard: (body) => postData(apiRoutes.credit_cards, body),
   getCreditCards: () => getData(apiRoutes.credit_cards),
   deleteCreditCard: (cardId) => deleteData(apiRoutes.credit_cards, cardId),
+  addAddress: (body) => postData(apiRoutes.address, body),
 
   // changePassword: (id, body) => updateData(apiRoutes.users, id, body),
 };

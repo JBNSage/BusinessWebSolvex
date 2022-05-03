@@ -23,7 +23,7 @@ export default function PlaceOrder() {
     <div>
       {createdOrder.id}
 
-      <Link to="../../my-orders">Mis órdenes</Link>
+      <Link to="../../profile/my-orders">Mis órdenes</Link>
     </div>
   );
 }

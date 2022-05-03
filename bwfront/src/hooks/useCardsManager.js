@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { apiCalls } from "../utilities/apiCalls";
+import useAuthentication from "./useAuthentication";
 
 export default function useCardsManager() {
   const [cards, setCards] = useState();
+  const { user } = useAuthentication();
 
   const getCards = () => {
-    apiCalls.getCreditCards().then((response) => {
-      if (response.data) {
-        setCards(response.data);
-      }
-    });
+    setCards(user.credit_cards);
   };
 
   const addCard = (body) => {

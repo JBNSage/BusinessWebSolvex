@@ -5,12 +5,11 @@ import { TextInput } from "../../components/forms/inputs";
 import { useAuthentication, useCardsManager } from "../../hooks";
 import { paymentMethodStorage } from "../../utilities/constants";
 import { useNavigate } from "react-router-dom";
+import { ModalForm } from "../../components";
 
 export default function PaymentMethod() {
   const { cards, getCards, addCard, deleteCard } = useCardsManager();
   const { user } = useAuthentication();
-  const modalRef = createRef();
-  const [currentModal, setCurrentModal] = React.useState();
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -19,17 +18,6 @@ export default function PaymentMethod() {
 
   const handleFormSubmit = (values) => {
     addCard(values);
-    closeModal();
-  };
-
-  const openModal = () => {
-    const modal = new window.bootstrap.Modal(modalRef.current);
-    setCurrentModal(modal);
-    modal.show();
-  };
-
-  const closeModal = () => {
-    currentModal.hide();
   };
 
   const setPaymentMethod = (card) => {
@@ -49,80 +37,39 @@ export default function PaymentMethod() {
         </div>
       ))}
 
-      <button type="button" className="btn btn-primary" onClick={openModal}>
-        Add payment method
-      </button>
-
-      <div ref={modalRef} className="modal fade">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="addCardModalLabel">
-                Agregar método de pago
-              </h5>
-              <button
-                type="button"
-                className="btn-close"
-                onClick={closeModal}
-              ></button>
-            </div>
-            <div className="modal-body">
-              <Formik
-                validationSchema={validationSchema}
-                initialValues={{
-                  user: user.id,
-                  name: "",
-                  number: "",
-                  cvv: "",
-                  expiration_date: "",
-                }}
-                onSubmit={handleFormSubmit}
-              >
-                <Form id="addCardForm">
-                  <TextInput
-                    name="name"
-                    label="Card name"
-                    placeholder="Card name"
-                  />
-                  <TextInput
-                    type="number"
-                    name="number"
-                    label="Card number"
-                    placeholder="Card number"
-                  />
-                  <TextInput
-                    type="number"
-                    name="cvv"
-                    label="Card cvv"
-                    placeholder="Card cvv"
-                  />
-                  <TextInput
-                    type="date"
-                    name="expiration_date"
-                    label="Card expiration date"
-                    placeholder="Card expiration date"
-                  />
-                </Form>
-              </Formik>
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={closeModal}
-              >
-                Close
-              </button>
-              <input
-                type="submit"
-                className="btn btn-primary"
-                value="Save changes"
-                form="addCardForm"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      <ModalForm
+        title="Agregar método de pago"
+        values={{
+          user: user.id,
+          name: "",
+          number: "",
+          cvv: "",
+          expiration_date: "",
+        }}
+        callback={handleFormSubmit}
+        validationSchema={validationSchema}
+        actionButtonText="Add payment method"
+      >
+        <TextInput name="name" label="Card name" placeholder="Card name" />
+        <TextInput
+          type="number"
+          name="number"
+          label="Card number"
+          placeholder="Card number"
+        />
+        <TextInput
+          type="number"
+          name="cvv"
+          label="Card cvv"
+          placeholder="Card cvv"
+        />
+        <TextInput
+          type="date"
+          name="expiration_date"
+          label="Card expiration date"
+          placeholder="Card expiration date"
+        />
+      </ModalForm>
     </div>
   );
 }
