@@ -22,6 +22,14 @@ export default function useAuthentication() {
     return response;
   };
 
+  const updateUser = async (body) => {
+    apiCalls.updateUser(user.id, body).then((response) => {
+      if (response.data) {
+        storeUser(response.data);
+      }
+    });
+  };
+
   const logout = () => {
     setUser(undefined);
     sessionStorage.removeItem(userStorage);
@@ -42,5 +50,13 @@ export default function useAuthentication() {
     sessionStorage.setItem(userStorage, JSON.stringify(responseData));
   };
 
-  return { login, register, logout, resetPassword, user, storeUser };
+  return {
+    login,
+    register,
+    logout,
+    resetPassword,
+    user,
+    storeUser,
+    updateUser,
+  };
 }

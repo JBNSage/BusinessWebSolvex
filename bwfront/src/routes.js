@@ -27,6 +27,10 @@ export default function AppRoutes() {
                 <Route path="my-addresses" element={<Views.Adresses />} />
                 <Route path="payment-methods" element={<Views.CreditCards />} />
                 <Route path="my-orders" element={<Views.Orders />} />
+                <Route
+                  path="personal-information"
+                  element={<Views.PersonalInformation />}
+                />
               </Route>
               <Route path="checkout">
                 <Route index element={<Views.Cart />} />

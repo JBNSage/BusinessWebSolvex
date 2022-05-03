@@ -4,6 +4,7 @@ import { apiRoutes, serverDomain } from "./constants";
 export const apiCalls = {
   register: (body) => postData(apiRoutes.register, body),
   login: (body) => postData(apiRoutes.login, body),
+  updateUser: (userId, body) => updateData(apiRoutes.login, userId, body),
   getProducts: () => getData(apiRoutes.products),
   getProductById: (id) => getData(apiRoutes.products, id),
   getCategories: () => getData(apiRoutes.categories),

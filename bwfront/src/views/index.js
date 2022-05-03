@@ -11,6 +11,7 @@ export { default as Profile } from "./profile/Profile";
 export { default as Adresses } from "./profile/Adresses";
 export { default as CreditCards } from "./profile/CreditCards";
 export { default as Orders } from "./profile/Orders";
+export { default as PersonalInformation } from "./profile/PersonalInformation";
 
 //PRODUCTS
 export { default as ProductDetails } from "./products/ProductDetails";
