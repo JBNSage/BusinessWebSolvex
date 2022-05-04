@@ -1,4 +1,4 @@
-export const serverDomain = "";
+export const serverDomain = "https://localhost:7012/";
 
 export const userStorage = "authUser";
 export const cartStorage = "cart_items";
@@ -224,12 +224,12 @@ export const dataDummies = {
 };
 
 export const apiRoutes = {
-  register: dataDummies.user,
-  login: dataDummies.user,
-  products: dataDummies.products,
-  orders: dataDummies.orders,
-  countries: dataDummies.countries,
-  credit_cards: dataDummies.credit_cards,
-  categories: dataDummies.categories,
-  address: "",
+  register: "api/users",
+  login: "api/users/login",
+  products: "api/products",
+  orders: "api/orders",
+  countries: "api/countries",
+  credit_cards: "api/creditcards",
+  categories: "api/categories",
+  address: "api/addresses",
 };

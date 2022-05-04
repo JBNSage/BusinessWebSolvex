@@ -15,7 +15,7 @@ export default function Login({ login }) {
     const response = await login(values);
 
     if (response.error) {
-      setRaiseAlert();
+      setRaiseAlert("Email or password incorrect");
     }
   };
 
@@ -41,7 +41,7 @@ export default function Login({ login }) {
             name="password"
             type="password"
           />
-          {raiseAlert && <AlertFormError message={"Error"} />}
+          {raiseAlert && <AlertFormError message={raiseAlert} />}
           <button type="submit">Iniciar sesión</button>
         </Form>
       </Formik>

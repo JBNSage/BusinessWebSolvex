@@ -24,81 +24,17 @@ export const apiCalls = {
   // changePassword: (id, body) => updateData(apiRoutes.users, id, body),
 };
 
-const getData = async (route, id) => {
-  var response = { data: undefined, error: undefined };
-
-  try {
-    if (id) {
-      var requestResponse = route.find((element) => element.id == id);
-    } else {
-      var requestResponse = route;
-    }
-
-    response.data = requestResponse;
-  } catch (error) {
-    console.log("🚀 ~ file: apiCalls.js ~ line 14 ~ getData ~ error", error);
-    response.error = error;
-  }
-  return response;
-};
-
-const postData = async (route, body) => {
-  var response = { data: undefined, error: undefined };
-
-  try {
-    const requestResponse = route;
-
-    response.data = requestResponse;
-  } catch (error) {
-    console.log("🚀 ~ file: apiCalls.js ~ line 14 ~ getData ~ error", error);
-    response.error = error;
-  }
-  return response;
-};
-
-const updateData = async (route, id, body) => {
-  var response = { data: undefined, error: undefined };
-
-  try {
-    var requestResponseIndex = route.findIndex((element) => element.id == id);
-
-    var requestResponse = route;
-
-    requestResponse.splice(requestResponseIndex, 1);
-
-    response.data = requestResponse;
-  } catch (error) {
-    console.log("🚀 ~ file: apiCalls.js ~ line 14 ~ getData ~ error", error);
-    response.error = error;
-  }
-  return response;
-};
-
-const deleteData = async (route, id) => {
-  var response = { data: undefined, error: undefined };
-
-  try {
-    var requestResponseIndex = route.findIndex((element) => element.id == id);
-
-    var requestResponse = route;
-
-    requestResponse.splice(requestResponseIndex, 1);
-
-    response.data = requestResponse;
-  } catch (error) {
-    console.log("🚀 ~ file: apiCalls.js ~ line 14 ~ getData ~ error", error);
-    response.error = error;
-  }
-  return response;
-};
-
-// const getData = async (route) => {
+// const getData = async (route, id) => {
 //   var response = { data: undefined, error: undefined };
 
 //   try {
-//     const requestResponse = await axios.get(serverDomain + route);
+//     if (id) {
+//       var requestResponse = route.find((element) => element.id == id);
+//     } else {
+//       var requestResponse = route;
+//     }
 
-//     response.data = requestResponse.data;
+//     response.data = requestResponse;
 //   } catch (error) {
 //     console.log("🚀 ~ file: apiCalls.js ~ line 14 ~ getData ~ error", error);
 //     response.error = error;
@@ -110,8 +46,9 @@ const deleteData = async (route, id) => {
 //   var response = { data: undefined, error: undefined };
 
 //   try {
-//     const requestResponse = await axios.get(serverDomain + route, body);
-//     response.data = requestResponse.data;
+//     const requestResponse = route;
+
+//     response.data = requestResponse;
 //   } catch (error) {
 //     console.log("🚀 ~ file: apiCalls.js ~ line 14 ~ getData ~ error", error);
 //     response.error = error;
@@ -123,14 +60,91 @@ const deleteData = async (route, id) => {
 //   var response = { data: undefined, error: undefined };
 
 //   try {
-//     const requestResponse = await axios.put(
-//       serverDomain + route + "/" + id,
-//       body
-//     );
-//     response.data = requestResponse.data;
+//     var requestResponseIndex = route.findIndex((element) => element.id == id);
+
+//     var requestResponse = route;
+
+//     requestResponse.splice(requestResponseIndex, 1);
+
+//     response.data = requestResponse;
 //   } catch (error) {
 //     console.log("🚀 ~ file: apiCalls.js ~ line 14 ~ getData ~ error", error);
 //     response.error = error;
 //   }
 //   return response;
 // };
+
+// const deleteData = async (route, id) => {
+//   var response = { data: undefined, error: undefined };
+
+//   try {
+//     var requestResponseIndex = route.findIndex((element) => element.id == id);
+
+//     var requestResponse = route;
+
+//     requestResponse.splice(requestResponseIndex, 1);
+
+//     response.data = requestResponse;
+//   } catch (error) {
+//     console.log("🚀 ~ file: apiCalls.js ~ line 14 ~ getData ~ error", error);
+//     response.error = error;
+//   }
+//   return response;
+// };
+
+const getData = async (route) => {
+  var response = { data: undefined, error: undefined };
+
+  try {
+    const requestResponse = await axios.get(serverDomain + route);
+
+    response.data = requestResponse.data;
+  } catch (error) {
+    console.log("🚀 ~ file: apiCalls.js ~ line 14 ~ getData ~ error", error);
+    response.error = error;
+  }
+  return response;
+};
+
+const postData = async (route, body) => {
+  var response = { data: undefined, error: undefined };
+
+  try {
+    const requestResponse = await axios.post(serverDomain + route, body);
+    response.data = requestResponse.data;
+  } catch (error) {
+    console.log("🚀 ~ file: apiCalls.js ~ line 14 ~ getData ~ error", error);
+    response.error = error;
+  }
+  return response;
+};
+
+const updateData = async (route, id, body) => {
+  var response = { data: undefined, error: undefined };
+
+  try {
+    const requestResponse = await axios.put(
+      serverDomain + route + "/" + id,
+      body
+    );
+    response.data = requestResponse.data;
+  } catch (error) {
+    console.log("🚀 ~ file: apiCalls.js ~ line 14 ~ getData ~ error", error);
+    response.error = error;
+  }
+  return response;
+};
+
+const deleteData = async (route, id) => {
+  var response = { data: undefined, error: undefined };
+
+  try {
+    var requestResponse = axios.delete(serverDomain + route + "/" + id);
+
+    response.data = requestResponse;
+  } catch (error) {
+    console.log("🚀 ~ file: apiCalls.js ~ line 14 ~ getData ~ error", error);
+    response.error = error;
+  }
+  return response;
+};
