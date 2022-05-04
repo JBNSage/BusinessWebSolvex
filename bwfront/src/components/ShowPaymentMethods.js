@@ -5,6 +5,7 @@ import { paymentMethodStorage } from "../utilities/constants";
 import { date, number, object, string } from "yup";
 import ModalForm from "./ModalForm";
 import { TextInput } from "./forms/inputs";
+import moment from "moment";
 
 export default function ShowPaymentMethods() {
   const { cards, getCards, addCard, deleteCard, editCard } = useCardsManager();
@@ -48,7 +49,7 @@ export default function ShowPaymentMethods() {
       />
       <TextInput
         type="date"
-        name="expiration_date"
+        name="expirationDate"
         label="Card expiration date"
         placeholder="Card expiration date"
       />
@@ -77,11 +78,14 @@ export default function ShowPaymentMethods() {
                 id={`editPaymentMethod-${card.id}`}
                 title="Edit payment method"
                 values={{
+                  userId: user.id,
                   cardId: card.id,
                   name: card.name,
                   number: card.number,
                   cvv: card.cvv,
-                  expiration_date: card.expiration_date,
+                  expirationDate: moment(card.expirationDate).format(
+                    "YYYY-MM-DD"
+                  ),
                 }}
                 callback={handleFormSubmitOnEdit}
                 validationSchema={validationSchema}
@@ -102,7 +106,7 @@ export default function ShowPaymentMethods() {
           name: "",
           number: "",
           cvv: "",
-          expiration_date: "",
+          expirationDate: "",
         }}
         callback={handleFormSubmitOnAdd}
         validationSchema={validationSchema}
@@ -124,5 +128,5 @@ const validationSchema = object({
     .length(3)
     .matches(/^[0-9]*$/g, "This field must be olny digits")
     .required("This field is required"),
-  expiration_date: date().required("This field is required"),
+  expirationDate: date().required("This field is required"),
 });
