@@ -48,10 +48,8 @@ namespace bwback.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProvider(int id, Provider provider)
         {
-            if (id != provider.Id)
-            {
-                return BadRequest();
-            }
+            provider.Id = id;
+
 
             _context.Entry(provider).State = EntityState.Modified;
 

@@ -26,14 +26,15 @@ namespace bwback.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Country>>> GetCountries()
         {
-            return await _context.Countries.ToListAsync();
+            var x =  await _context.Countries.Include("Cities").ToListAsync();
+            return x;
         }
 
         // GET: api/Countries/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Country>> GetCountry(int id)
         {
-            var country = await _context.Countries.FindAsync(id);
+            var country = await _context.Countries.Include("Cities").FirstOrDefaultAsync(c => c.Id == id);
 
             if (country == null)
             {
@@ -48,10 +49,8 @@ namespace bwback.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCountry(int id, Country country)
         {
-            if (id != country.Id)
-            {
-                return BadRequest();
-            }
+            country.Id = id;
+            
 
             _context.Entry(country).State = EntityState.Modified;
 

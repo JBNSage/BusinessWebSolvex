@@ -48,10 +48,8 @@ namespace bwback.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCreditCard(int id, CreditCard creditCard)
         {
-            if (id != creditCard.Id)
-            {
-                return BadRequest();
-            }
+            creditCard.Id = id;
+
 
             _context.Entry(creditCard).State = EntityState.Modified;
 

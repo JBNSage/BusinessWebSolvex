@@ -48,10 +48,7 @@ namespace bwback.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAddress(int id, Address address)
         {
-            if (id != address.Id)
-            {
-                return BadRequest();
-            }
+            address.Id = id;
 
             _context.Entry(address).State = EntityState.Modified;
 

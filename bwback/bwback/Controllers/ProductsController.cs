@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using bwback.Context;
 using bwback.Models;
+using Microsoft.AspNetCore.OData.Query;
 
 namespace bwback.Controllers
 {
@@ -24,16 +25,18 @@ namespace bwback.Controllers
 
         // GET: api/Products
         [HttpGet]
+        [EnableQuery]
+
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
-            return await _context.Products.ToListAsync();
+            return await _context.Products.Include("Category").Include("Provider").ToListAsync();
         }
 
         // GET: api/Products/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products.Include("Category").Include("Provider").FirstOrDefaultAsync(x => x.Id == id);
 
             if (product == null)
             {
@@ -48,10 +51,7 @@ namespace bwback.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct(int id, Product product)
         {
-            if (id != product.Id)
-            {
-                return BadRequest();
-            }
+            product.Id = id;
 
             _context.Entry(product).State = EntityState.Modified;
 

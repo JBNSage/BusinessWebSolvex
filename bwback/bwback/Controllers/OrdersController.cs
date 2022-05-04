@@ -26,14 +26,14 @@ namespace bwback.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
-            return await _context.Orders.ToListAsync();
+            return await _context.Orders.Include("OrderDetails").ToListAsync();
         }
 
         // GET: api/Orders/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Order>> GetOrder(int id)
         {
-            var order = await _context.Orders.FindAsync(id);
+            var order = await _context.Orders.Include("OrderDetails").FirstOrDefaultAsync(x => x.Id == id);
 
             if (order == null)
             {
@@ -48,10 +48,7 @@ namespace bwback.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOrder(int id, Order order)
         {
-            if (id != order.Id)
-            {
-                return BadRequest();
-            }
+            order.Id = id;
 
             _context.Entry(order).State = EntityState.Modified;
 

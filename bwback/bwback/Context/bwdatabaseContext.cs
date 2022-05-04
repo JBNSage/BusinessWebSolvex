@@ -48,7 +48,7 @@ namespace bwback.Context
                     .IsUnicode(false)
                     .HasColumnName("building");
 
-                entity.Property(e => e.City).HasColumnName("city");
+                entity.Property(e => e.CityId).HasColumnName("cityId");
 
                 entity.Property(e => e.PostalCode)
                     .HasMaxLength(10)
@@ -59,17 +59,17 @@ namespace bwback.Context
                     .HasMaxLength(100)
                     .HasColumnName("street");
 
-                entity.Property(e => e.User).HasColumnName("user");
+                entity.Property(e => e.UserId).HasColumnName("userId");
 
-                entity.HasOne(d => d.CityNavigation)
+                entity.HasOne(d => d.City)
                     .WithMany(p => p.Addresses)
-                    .HasForeignKey(d => d.City)
+                    .HasForeignKey(d => d.CityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_address_city");
 
-                entity.HasOne(d => d.UserNavigation)
+                entity.HasOne(d => d.User)
                     .WithMany(p => p.Addresses)
-                    .HasForeignKey(d => d.User)
+                    .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_user_address");
             });
@@ -88,16 +88,16 @@ namespace bwback.Context
             {
                 entity.ToTable("city");
 
-                entity.Property(e => e.Country).HasColumnName("country");
+                entity.Property(e => e.CountryId).HasColumnName("countryId");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("name");
 
-                entity.HasOne(d => d.CountryNavigation)
+                entity.HasOne(d => d.Country)
                     .WithMany(p => p.Cities)
-                    .HasForeignKey(d => d.Country)
+                    .HasForeignKey(d => d.CountryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_city_country");
             });
@@ -140,11 +140,11 @@ namespace bwback.Context
                     .IsUnicode(false)
                     .HasColumnName("number");
 
-                entity.Property(e => e.User).HasColumnName("user");
+                entity.Property(e => e.UserId).HasColumnName("userId");
 
-                entity.HasOne(d => d.UserNavigation)
+                entity.HasOne(d => d.User)
                     .WithMany(p => p.CreditCards)
-                    .HasForeignKey(d => d.User)
+                    .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_credit_card_user");
             });
@@ -190,30 +190,36 @@ namespace bwback.Context
                     .HasColumnName("updated_at")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.User).HasColumnName("user");
+                entity.Property(e => e.UserId).HasColumnName("userId");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_order_user");
             });
 
             modelBuilder.Entity<OrderDetail>(entity =>
             {
                 entity.ToTable("order_details");
 
-                entity.Property(e => e.Order).HasColumnName("order");
+                entity.Property(e => e.OrderId).HasColumnName("orderId");
 
                 entity.Property(e => e.Price).HasColumnName("price");
 
-                entity.Property(e => e.Product).HasColumnName("product");
+                entity.Property(e => e.ProductId).HasColumnName("productId");
 
                 entity.Property(e => e.Quantity).HasColumnName("quantity");
 
-                entity.HasOne(d => d.OrderNavigation)
+                entity.HasOne(d => d.Order)
                     .WithMany(p => p.OrderDetails)
-                    .HasForeignKey(d => d.Order)
+                    .HasForeignKey(d => d.OrderId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_order_details_order");
 
-                entity.HasOne(d => d.ProductNavigation)
+                entity.HasOne(d => d.Product)
                     .WithMany(p => p.OrderDetails)
-                    .HasForeignKey(d => d.Product)
+                    .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_order_details_product");
             });
@@ -222,7 +228,7 @@ namespace bwback.Context
             {
                 entity.ToTable("product");
 
-                entity.Property(e => e.Category).HasColumnName("category");
+                entity.Property(e => e.CategoryId).HasColumnName("categoryId");
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
@@ -241,7 +247,7 @@ namespace bwback.Context
 
                 entity.Property(e => e.Price).HasColumnName("price");
 
-                entity.Property(e => e.Provider).HasColumnName("provider");
+                entity.Property(e => e.ProviderId).HasColumnName("providerId");
 
                 entity.Property(e => e.Quantity).HasColumnName("quantity");
 
@@ -252,15 +258,15 @@ namespace bwback.Context
                     .HasColumnName("updated_at")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.HasOne(d => d.CategoryNavigation)
+                entity.HasOne(d => d.Category)
                     .WithMany(p => p.Products)
-                    .HasForeignKey(d => d.Category)
+                    .HasForeignKey(d => d.CategoryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_product_category");
 
-                entity.HasOne(d => d.ProviderNavigation)
+                entity.HasOne(d => d.Provider)
                     .WithMany(p => p.Products)
-                    .HasForeignKey(d => d.Provider)
+                    .HasForeignKey(d => d.ProviderId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_product_provider");
             });
@@ -289,7 +295,7 @@ namespace bwback.Context
             {
                 entity.ToTable("user");
 
-                entity.Property(e => e.Country).HasColumnName("country");
+                entity.Property(e => e.CountryId).HasColumnName("countryId");
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
@@ -320,6 +326,11 @@ namespace bwback.Context
                     .HasColumnType("datetime")
                     .HasColumnName("updated_at")
                     .HasDefaultValueSql("(getdate())");
+
+                entity.HasOne(d => d.Country)
+                    .WithMany(p => p.Users)
+                    .HasForeignKey(d => d.CountryId)
+                    .HasConstraintName("FK_user_country");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -24,6 +24,7 @@ namespace bwback.Controllers
 
         // GET: api/Categories
         [HttpGet]
+
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
             return await _context.Categories.ToListAsync();
@@ -48,10 +49,7 @@ namespace bwback.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCategory(int id, Category category)
         {
-            if (id != category.Id)
-            {
-                return BadRequest();
-            }
+            category.Id = id;
 
             _context.Entry(category).State = EntityState.Modified;
 

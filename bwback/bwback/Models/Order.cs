@@ -11,7 +11,7 @@ namespace bwback.Models
         }
 
         public int Id { get; set; }
-        public int User { get; set; }
+        public int UserId { get; set; }
         public string State { get; set; } = null!;
         public string Card { get; set; } = null!;
         public DateTime EstimatedArrival { get; set; }
@@ -22,6 +22,7 @@ namespace bwback.Models
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
+        public virtual User? User { get; set; } = null!;
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

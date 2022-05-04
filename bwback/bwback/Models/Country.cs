@@ -8,6 +8,7 @@ namespace bwback.Models
         public Country()
         {
             Cities = new HashSet<City>();
+            Users = new HashSet<User>();
         }
 
         public int Id { get; set; }
@@ -15,5 +16,6 @@ namespace bwback.Models
         public string? Flag { get; set; }
 
         public virtual ICollection<City> Cities { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

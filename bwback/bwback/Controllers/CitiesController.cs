@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using bwback.Context;
 using bwback.Models;
+using Microsoft.AspNetCore.OData.Query;
 
 namespace bwback.Controllers
 {
@@ -24,16 +25,17 @@ namespace bwback.Controllers
 
         // GET: api/Cities
         [HttpGet]
+        [EnableQuery]
         public async Task<ActionResult<IEnumerable<City>>> GetCities()
         {
-            return await _context.Cities.ToListAsync();
+            return await _context.Cities.Include("Country").ToListAsync();
         }
 
         // GET: api/Cities/5
         [HttpGet("{id}")]
         public async Task<ActionResult<City>> GetCity(int id)
         {
-            var city = await _context.Cities.FindAsync(id);
+            var city = await _context.Cities.Include("Country").FirstOrDefaultAsync(x => x.Id == id);
 
             if (city == null)
             {
@@ -48,10 +50,7 @@ namespace bwback.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCity(int id, City city)
         {
-            if (id != city.Id)
-            {
-                return BadRequest();
-            }
+            city.Id = id;
 
             _context.Entry(city).State = EntityState.Modified;
 
