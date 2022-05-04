@@ -23,6 +23,20 @@ namespace bwback.Controllers
             _context = context;
         }
 
+
+        [HttpPost("login")]
+        public async Task<ActionResult<User>> Login(Login login)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == login.Email && x.Password == login.Password);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return user;
+        }
+
         // GET: api/Users
         [HttpGet]
         [EnableQuery]
@@ -85,6 +99,7 @@ namespace bwback.Controllers
 
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
+
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
