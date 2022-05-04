@@ -5,21 +5,35 @@ export default function useProductsManager() {
   const [products, setProducts] = useState();
   const [singleProduct, setSingleProduct] = useState();
 
-  const getProducts = (query) => {
-    apiCalls.getProducts().then((response) => {
+  const getProducts = (category) => {
+    apiCalls.getProducts(category).then((response) => {
       if (response.data) {
         setProducts(response.data);
       }
     });
   };
 
-  const getProductById = (id, query) => {
-    apiCalls.getProductById(id, query).then((response) => {
+  const getProductById = (id) => {
+    apiCalls.getProductById(id).then((response) => {
       if (response.data) {
         setSingleProduct(response.data);
       }
     });
   };
 
-  return { products, singleProduct, getProducts, getProductById };
+  const updateProducts = (products) => {
+    console.log(
+      "🚀 ~ file: useProductsManager.js ~ line 25 ~ updateProducts ~ products",
+      products
+    );
+    apiCalls.updateProducts(products);
+  };
+
+  return {
+    products,
+    singleProduct,
+    getProducts,
+    getProductById,
+    updateProducts,
+  };
 }

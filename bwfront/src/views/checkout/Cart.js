@@ -22,7 +22,7 @@ export default function Cart() {
             value={cartItem.quantity}
             onChange={(e) => {
               if (
-                cartItem.product.quantity > e.target.value &&
+                cartItem.product.quantity >= e.target.value &&
                 e.target.value > 0
               ) {
                 updateQuantity(cartItem.product.id, e.target.value);

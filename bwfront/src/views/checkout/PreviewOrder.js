@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../../contexts/AppContext";
-import { numberWithCommas } from "../../utilities/parsers";
 
 export default function PreviewOrder() {
   const { cart, calculateCartTotal } = useAppContext();

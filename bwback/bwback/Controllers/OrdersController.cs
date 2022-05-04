@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using bwback.Context;
 using bwback.Models;
+using Microsoft.AspNetCore.OData.Query;
 
 namespace bwback.Controllers
 {
@@ -24,6 +25,7 @@ namespace bwback.Controllers
 
         // GET: api/Orders
         [HttpGet]
+        [EnableQuery]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
             return await _context.Orders.Include("OrderDetails").ToListAsync();

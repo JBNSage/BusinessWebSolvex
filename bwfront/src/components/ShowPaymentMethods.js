@@ -11,10 +11,6 @@ export default function ShowPaymentMethods() {
   const { user } = useAuthentication();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(
-    "🚀 ~ file: ShowPaymentMethods.js ~ line 8 ~ ShowPaymentMethods ~ location",
-    location
-  );
 
   React.useEffect(() => {
     getCards();
@@ -82,7 +78,6 @@ export default function ShowPaymentMethods() {
                 title="Edit payment method"
                 values={{
                   cardId: card.id,
-                  user: user.id,
                   name: card.name,
                   number: card.number,
                   cvv: card.cvv,
@@ -103,7 +98,7 @@ export default function ShowPaymentMethods() {
         id="addPaymentMethod"
         title="Add payment method"
         values={{
-          user: user.id,
+          userId: user.id,
           name: "",
           number: "",
           cvv: "",
@@ -121,8 +116,8 @@ export default function ShowPaymentMethods() {
 const validationSchema = object({
   name: string().required("This field is required"),
   number: string()
-    .min(15, "Card number must be valid")
-    .max(16, "Card number must be valid")
+    .min(15, "Card number must be 15 or 16 digits")
+    .max(16, "Card number must be 15 or 16 digits")
     .matches(/^[0-9]*$/g, "This field must be olny digits")
     .required("This field is required"),
   cvv: string()

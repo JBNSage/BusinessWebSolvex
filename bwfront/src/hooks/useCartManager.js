@@ -97,6 +97,11 @@ export default function useCartManager() {
     };
   };
 
+  const clearCart = () => {
+    const cartTMP = [];
+    updateCart(cartTMP);
+  };
+
   return {
     addToCart,
     updateQuantity,
@@ -104,5 +109,6 @@ export default function useCartManager() {
     getCartProduct,
     calculateCartTotal,
     cart,
+    clearCart,
   };
 }

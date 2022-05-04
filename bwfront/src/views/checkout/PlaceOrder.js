@@ -9,8 +9,13 @@ export default function PlaceOrder() {
 
   useEffect(() => {
     createOrder().then((response) => {
-      if (response) {
-        setCreatedOrder(response);
+      if (response == undefined) {
+        setPlacingOrder(undefined);
+      }
+
+      if (response.data) {
+        setCreatedOrder(response.data);
+        setPlacingOrder(false);
       }
     });
   }, []);
@@ -21,7 +26,7 @@ export default function PlaceOrder() {
 
   return (
     <div>
-      {createdOrder.id}
+      {placingOrder !== undefined && createdOrder.id}
 
       <Link to="../../profile/my-orders">Mis órdenes</Link>
     </div>

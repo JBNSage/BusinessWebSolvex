@@ -227,6 +227,7 @@ export const apiRoutes = {
   register: "api/users",
   login: "api/users/login",
   products: "api/products",
+  updateManyProducts: "api/products/many",
   orders: "api/orders",
   countries: "api/countries",
   credit_cards: "api/creditcards",

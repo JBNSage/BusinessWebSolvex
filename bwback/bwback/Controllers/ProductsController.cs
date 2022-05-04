@@ -74,6 +74,27 @@ namespace bwback.Controllers
             return NoContent();
         }
 
+        [HttpPut("many")]
+        public async Task<ActionResult<IEnumerable<Product>>> PutManyProducts(Product[] products)
+        {
+            var productsDict = new Dictionary<int, Product>(); 
+
+            foreach (Product product in products)
+            {
+                productsDict.Add(product.Id, product);
+            }
+
+            var dbProducts = await _context.Products.Where(p => productsDict.Keys.Contains(p.Id)).ToListAsync();
+
+            dbProducts.ForEach(product => product.Quantity = productsDict[product.Id].Quantity);
+
+            await _context.SaveChangesAsync();
+
+
+            return dbProducts;
+
+        }
+
         // POST: api/Products
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]

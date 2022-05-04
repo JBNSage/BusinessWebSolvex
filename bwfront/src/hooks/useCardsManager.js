@@ -7,7 +7,7 @@ export default function useCardsManager() {
   const { user } = useAuthentication();
 
   const getCards = () => {
-    apiCalls.getCreditCards().then((response) => {
+    apiCalls.getCreditCards(user.id).then((response) => {
       if (response.data) {
         setCards(response.data);
       }
@@ -15,7 +15,7 @@ export default function useCardsManager() {
   };
 
   const addCard = async (body) => {
-    await apiCalls.addCreditCard();
+    await apiCalls.addCreditCard(body);
     getCards();
   };
 

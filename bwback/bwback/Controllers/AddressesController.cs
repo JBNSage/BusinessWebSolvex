@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using bwback.Context;
 using bwback.Models;
+using Microsoft.AspNetCore.OData.Query;
 
 namespace bwback.Controllers
 {
@@ -24,6 +25,7 @@ namespace bwback.Controllers
 
         // GET: api/Addresses
         [HttpGet]
+        [EnableQuery]
         public async Task<ActionResult<IEnumerable<Address>>> GetAddresses()
         {
             return await _context.Addresses.ToListAsync();

@@ -6,8 +6,7 @@ export default function Products() {
   const { products, getProducts } = useProductsManager();
 
   React.useEffect(() => {
-    const query = `category=${searchParams.get("category")}`;
-    getProducts(query);
+    getProducts(searchParams.get("category"));
   }, []);
 
   return products?.map((product, index) => (
