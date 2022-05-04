@@ -79,8 +79,8 @@ export const dataDummies = {
   user: {
     id: 1,
     email: "jlbello24@gmail.com",
-    first_name: "Juan Luis",
-    last_name: "Bello Polanco",
+    firstName: "Juan Luis",
+    lastName: "Bello Polanco",
     phone: "8297813572",
     country: {
       id: 1,

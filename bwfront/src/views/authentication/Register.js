@@ -13,7 +13,7 @@ export default function Register({ login, register }) {
     const registerResponse = await register(values);
 
     if (registerResponse.error) {
-      setRaiseAlert();
+      setRaiseAlert("An error has ocurred, please try later");
       return;
     }
 
@@ -34,8 +34,8 @@ export default function Register({ login, register }) {
     <Formik
       validationSchema={validationSchema}
       initialValues={{
-        first_name: "",
-        last_name: "",
+        firstName: "",
+        lastName: "",
         email: "",
         password: "",
         confirmPassword: "",
@@ -43,8 +43,8 @@ export default function Register({ login, register }) {
       onSubmit={handleSubmit}
     >
       <Form>
-        <TextInput placeholder="Nombre" label="Nombre" name="first_name" />
-        <TextInput placeholder="Apellido" label="Apellido" name="last_name" />
+        <TextInput placeholder="Nombre" label="Nombre" name="firstName" />
+        <TextInput placeholder="Apellido" label="Apellido" name="lastName" />
         <TextInput
           placeholder="Correo electrónico"
           label="Correo electrónico"
@@ -62,7 +62,7 @@ export default function Register({ login, register }) {
           name="confirmPassword"
           type="password"
         />
-        {raiseAlert && <AlertFormError message={"Error"} />}
+        {raiseAlert && <AlertFormError message={raiseAlert} />}
         <button type="submit">Iniciar sesión</button>
       </Form>
     </Formik>
@@ -70,8 +70,8 @@ export default function Register({ login, register }) {
 }
 
 const validationSchema = object({
-  first_name: string().required("This field is required"),
-  last_name: string().required("This field is required"),
+  firstName: string().required("This field is required"),
+  lastName: string().required("This field is required"),
   email: string()
     .email("It must be a valid email")
     .required("It must be a valid email"),

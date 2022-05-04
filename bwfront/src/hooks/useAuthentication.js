@@ -41,6 +41,7 @@ export default function useAuthentication() {
     if (response.data) {
       storeUser(response.data);
     }
+    return response;
   };
 
   const resetPassword = () => {};

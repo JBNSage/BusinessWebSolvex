@@ -310,12 +310,12 @@ namespace bwback.Context
                 entity.Property(e => e.FirstName)
                     .HasMaxLength(50)
                     .IsUnicode(false)
-                    .HasColumnName("first_name");
+                    .HasColumnName("firstName");
 
                 entity.Property(e => e.LastName)
                     .HasMaxLength(50)
                     .IsUnicode(false)
-                    .HasColumnName("last_name");
+                    .HasColumnName("lastName");
 
                 entity.Property(e => e.Phone)
                     .HasMaxLength(15)

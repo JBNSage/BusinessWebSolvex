@@ -22,16 +22,16 @@ export default function PersonalInformation() {
     <Formik
       validationSchema={validationSchema}
       initialValues={{
-        first_name: user.first_name,
-        last_name: user.last_name,
+        firstName: user.firstName,
+        lastName: user.lastName,
         email: user.email,
         phone: user.phone,
       }}
       onSubmit={handleSubmit}
     >
       <Form>
-        <TextInput placeholder="Name" label="Name" name="first_name" />
-        <TextInput placeholder="Last name" label="Last name" name="last_name" />
+        <TextInput placeholder="Name" label="Name" name="firstName" />
+        <TextInput placeholder="Last name" label="Last name" name="lastName" />
         <TextInput placeholder="Email" label="Email" name="email" />
         <TextInput placeholder="Phone" label="Phone" name="phone" />
 
@@ -43,8 +43,8 @@ export default function PersonalInformation() {
 }
 
 const validationSchema = object({
-  first_name: string().required("This field is required"),
-  last_name: string().required("This field is required"),
+  firstName: string().required("This field is required"),
+  lastName: string().required("This field is required"),
   email: string()
     .email("It must be a valid email")
     .required("It must be a valid email"),
