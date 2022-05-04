@@ -23,11 +23,19 @@ export default function useAuthentication() {
   };
 
   const updateUser = async (body) => {
-    apiCalls.updateUser(user.id, body).then((response) => {
-      if (response.data) {
-        storeUser(response.data);
-      }
-    });
+    body.password = user.password;
+    body.createdAt = user.createdAt;
+    body.updatedAt = user.updatedAt;
+
+    const response = await apiCalls.updateUser(user.id, body);
+    console.log(
+      "🚀 ~ file: useAuthentication.js ~ line 29 ~ updateUser ~ response",
+      response
+    );
+
+    if (response.data) {
+      storeUser(response.data);
+    }
   };
 
   const logout = () => {

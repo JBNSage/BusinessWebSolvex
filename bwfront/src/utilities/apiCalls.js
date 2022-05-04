@@ -2,9 +2,9 @@ import axios from "axios";
 import { apiRoutes, serverDomain } from "./constants";
 
 export const apiCalls = {
-  register: (body) => postData(apiRoutes.register, body),
+  register: (body) => postData(apiRoutes.users, body),
   login: (body) => postData(apiRoutes.login, body),
-  updateUser: (userId, body) => updateData(apiRoutes.login, userId, body),
+  updateUser: (userId, body) => updateData(apiRoutes.users, userId, body),
   getProducts: (category) =>
     getData(apiRoutes.products + `?$filter=categoryId eq ${category}`),
   getProductById: (id) => getData(apiRoutes.products + "/" + id),

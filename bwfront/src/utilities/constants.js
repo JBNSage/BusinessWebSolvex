@@ -224,7 +224,7 @@ export const dataDummies = {
 };
 
 export const apiRoutes = {
-  register: "api/users",
+  users: "api/users",
   login: "api/users/login",
   products: "api/products",
   updateManyProducts: "api/products/many",

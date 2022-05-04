@@ -48,5 +48,5 @@ const validationSchema = object({
   email: string()
     .email("It must be a valid email")
     .required("It must be a valid email"),
-  phone: string(),
+  phone: string().nullable(),
 });
