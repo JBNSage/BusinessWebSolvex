@@ -5,38 +5,34 @@ import useAuthentication from "./useAuthentication";
 export default function useAddressesManager() {
   const [addresses, setAddresses] = React.useState([]);
   const { user, storeUser } = useAuthentication();
-  const getAddresses = () => {
-    setAddresses(user.addresses);
+
+  console.log(
+    "🚀 ~ file: useAddressesManager.js ~ line 7 ~ useAddressesManager ~ addresses",
+    addresses
+  );
+
+  const getAddresses = async () => {
+    const response = await apiCalls.getAddresses(user.id);
+
+    if (response.data) {
+      setAddresses(response.data);
+    }
   };
-  const addAddress = (values) => {
-    apiCalls.addAddress(values).then((response) => {
-      if (response.data) {
-        var userTMP = JSON.parse(JSON.stringify(user));
 
-        userTMP.addresses.push(values);
-
-        storeUser(userTMP);
-      }
-    });
+  const addAddress = async (values) => {
+    const response = await apiCalls.addAddress(values);
 
     getAddresses();
+
+    return response;
   };
-  const deleteAddress = (addressId) => {
-    apiCalls.deleteAddress(addressId).then((response) => {
-      if (response.data) {
-        var userTMP = JSON.parse(JSON.stringify(user));
 
-        const addressIndex = userTMP.addresses.findIndex(
-          (address) => address.id == addressId
-        );
+  const deleteAddress = async (addressId) => {
+    const response = await apiCalls.deleteAddress(addressId);
 
-        userTMP.splice(addressIndex, 1);
-
-        storeUser(userTMP);
-      }
-    });
-    getAddresses();
+    await getAddresses();
   };
+
   const updateAddress = (addressId, body) => {
     apiCalls.updateAddress(addressId, body).then((response) => {
       if (response.data) {

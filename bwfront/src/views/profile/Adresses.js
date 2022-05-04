@@ -52,7 +52,7 @@ export default function Addresses() {
       />
       <TextInput
         type="number"
-        name="postal_code"
+        name="postalCode"
         label="Zip code"
         placeholder="Zip code"
       />
@@ -76,7 +76,7 @@ export default function Addresses() {
           />
 
           <SelectInput
-            name="city"
+            name="cityId"
             label="City"
             placeholder="City"
             options={currentCities}
@@ -104,15 +104,15 @@ export default function Addresses() {
               </button>
               <ModalForm
                 id={`editAddress-${address.id}`}
-                onOpen={() => getCountryCities(address.city.country)}
+                onOpen={() => getCountryCities(address.city.countryId)}
                 title="Edit address"
                 values={{
                   addressId: address.id,
-                  user: user.id,
+                  userId: user.id,
                   street: address.street,
                   building: address.building,
-                  postal_code: address.postal_code,
-                  city: address.city.id,
+                  postalCode: address.postalCode,
+                  cityId: address.cityId,
                 }}
                 callback={handleFormSubmitOnUpdate}
                 validationSchema={validationSchema}
@@ -126,11 +126,11 @@ export default function Addresses() {
         id="addAddress"
         title="Add address"
         values={{
-          user: user.id,
+          userId: user.id,
           street: "",
           building: "",
-          postal_code: "",
-          city: "",
+          postalCode: "",
+          cityId: "",
         }}
         callback={handleFormSubmitOnCreate}
         validationSchema={validationSchema}
@@ -144,8 +144,8 @@ export default function Addresses() {
 const validationSchema = object({
   street: string().required("This field is required"),
   building: string().required("This field is required"),
-  postal_code: string()
+  postalCode: string()
     .matches(/^[0-9]*$/g, "This field must be olny digits")
     .required("This field is required"),
-  city: number().required("This field is required"),
+  cityId: number().required("This field is required"),
 });

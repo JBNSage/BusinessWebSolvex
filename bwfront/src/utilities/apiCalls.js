@@ -20,6 +20,8 @@ export const apiCalls = {
   deleteCreditCard: (cardId) => deleteData(apiRoutes.credit_cards, cardId),
   editCreditCard: (cardId, body) =>
     updateData(apiRoutes.credit_cards, cardId, body),
+  getAddresses: (userId) =>
+    getData(apiRoutes.address + `?$filter=userId eq ${userId}`),
   addAddress: (body) => postData(apiRoutes.address, body),
   deleteAddress: (addressId) => deleteData(apiRoutes.address, addressId),
   updateAddress: (addressId, body) =>

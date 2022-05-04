@@ -28,14 +28,14 @@ namespace bwback.Controllers
         [EnableQuery]
         public async Task<ActionResult<IEnumerable<Address>>> GetAddresses()
         {
-            return await _context.Addresses.ToListAsync();
+            return await _context.Addresses.Include("City").ToListAsync();
         }
 
         // GET: api/Addresses/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Address>> GetAddress(int id)
         {
-            var address = await _context.Addresses.FindAsync(id);
+            var address = await _context.Addresses.Include("City").FirstOrDefaultAsync(x => x.Id == id);
 
             if (address == null)
             {
