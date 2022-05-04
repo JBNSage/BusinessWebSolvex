@@ -17,6 +17,32 @@ body {
   color: #000;
 }
 
+.products_container a {
+  color: #000;
+  text-decoration: none;
+}
+
+.product_picture {
+  width: 215px;
+  height: auto;
+}
+
+.product_detail_item.price .dollar_sign {
+  font-size: 10px;
+}
+
+.product_detail_item.provider {
+  color: #858585;
+}
+
+.products_container .product_details_container p {
+  margin-bottom: 0;
+}
+
+.products_container .product_item .row {
+  background-color: #fbfbfb;
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

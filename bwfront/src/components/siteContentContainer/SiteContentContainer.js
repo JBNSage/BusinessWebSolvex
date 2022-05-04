@@ -37,7 +37,7 @@ export default function SiteHeader() {
           </div>
         </div>
       </header>
-      <main className="container pt-5 mt-5">
+      <main className="container pt-5  mt-5">
         <Outlet />
       </main>
       <footer className="row bg-dark container-fluid justify-content-between m-0 position-absolute bottom-0 p-4">

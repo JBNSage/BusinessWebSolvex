@@ -38,4 +38,6 @@ footer .footer_item {
 
 main.container {
   padding-bottom: 10rem;
+  padding-left: 10rem;
+  padding-right: 10rem;
 }
