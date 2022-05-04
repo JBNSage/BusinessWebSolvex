@@ -1,3 +1,41 @@
 footer .footer_item {
   color: #fff;
 }
+
+.list-group {
+  list-style-type: none;
+}
+
+.logo_col a,
+.header_list_item a {
+  color: #000;
+}
+
+.header_list_item + .header_list_item {
+  margin-left: 10px;
+}
+
+.footer_list_item {
+  font-size: 0.9rem;
+}
+
+.footer_list_item a {
+  color: #fff;
+}
+
+.logo_col a,
+.footer_list_item a {
+  text-decoration: none;
+}
+
+.footer_list_item + .footer_list_item {
+  margin-top: 5px;
+}
+
+#root > footer {
+  height: 9rem;
+}
+
+main.container {
+  padding-bottom: 10rem;
+}

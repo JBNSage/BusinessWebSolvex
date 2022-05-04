@@ -1,11 +1,14 @@
-html,
-body,
+body {
+  font-family: "Inter", sans-serif;
+}
+
 #root {
-  height: 100%;
+  min-height: 100vh;
+  position: relative;
 }
 
 .home_category .home_category_picture {
-  width: 200px;
+  width: 170px;
   height: auto;
 }
 

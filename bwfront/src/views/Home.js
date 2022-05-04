@@ -9,57 +9,25 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="home_categories_container row align-items-end justify-content-around">
-      {categories && (
-        <>
+    <div className="home_categories_container row align-items-end justify-content-center  ">
+      {categories &&
+        categories.map((category) => (
           <Link
-            to={`./products?category=${categories[0].id}`}
-            className="home_category col-auto d-flex justify-content-center"
+            to={`./products?category=${category.id}`}
+            className="home_category col-3 d-flex justify-content-center"
           >
             <figure>
               <img
                 className="home_category_picture"
-                src={categories[0].picture}
-                alt={categories[0].name}
+                src={category.picture}
+                alt={category.name}
               />
-              <figcaption className="text-uppercase text-center fw-bold">
-                {categories[0].name}
+              <figcaption className="text-uppercase text-center fs-6 fw-bold">
+                {category.name}
               </figcaption>
             </figure>
           </Link>
-
-          <Link
-            to={`./products?category=${categories[1].id}`}
-            className="home_category col-auto d-flex justify-content-center"
-          >
-            <figure>
-              <img
-                className="home_category_picture"
-                src={categories[1].picture}
-                alt={categories[1].name}
-              />
-              <figcaption className="text-uppercase text-center fw-bold">
-                {categories[1].name}
-              </figcaption>
-            </figure>
-          </Link>
-          <Link
-            to={`./products?category=${categories[2].id}`}
-            className="home_category col-auto d-flex justify-content-center"
-          >
-            <figure>
-              <img
-                className="home_category_picture"
-                src={categories[2].picture}
-                alt={categories[2].name}
-              />
-              <figcaption className="text-uppercase text-center fw-bold">
-                {categories[2].name}
-              </figcaption>
-            </figure>
-          </Link>
-        </>
-      )}
+        ))}
     </div>
   );
 }
