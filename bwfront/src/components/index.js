@@ -4,3 +4,5 @@ export { default as ModalForm } from "./ModalForm";
 export { default as ShowPaymentMethods } from "./ShowPaymentMethods";
 export { default as SectionHeader } from "./sectionHeader/SectionHeader";
 export { default as RatingIndicator } from "./ratingIndicator/RatingIndicator";
+export { default as ProductShowcase } from "./ProductShowcase";
+export { default as MoneyFormat } from "./MoneyFormat";

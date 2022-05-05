@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { RatingIndicator, SectionHeader } from "../../components";
+import { MoneyFormat, RatingIndicator, SectionHeader } from "../../components";
 import { useAppContext } from "../../contexts/AppContext";
 import { useProductsManager } from "../../hooks";
 import { numberWithCommas } from "../../utilities/parsers";
@@ -60,11 +60,8 @@ export default function ProductDetails() {
                   by {singleProduct.provider.name}
                 </p>
               </div>
-              <div className="product_detail_item price d-flex align-items-start d-flex justify-content-end">
-                <p className="dollar_sign fw-bold">US$</p>
-                <p className="product_detail fw-bold">
-                  {numberWithCommas(singleProduct.price)}
-                </p>
+              <div className="col d-flex justify-content-end">
+                <MoneyFormat money={singleProduct.price} />
               </div>
               <div className="add_to_cart col d-flex justify-content-end">
                 {singleProduct.quantity > 0 &&
