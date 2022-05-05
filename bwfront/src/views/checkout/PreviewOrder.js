@@ -1,24 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { CartSummary, ProductShowcase, SectionHeader } from "../../components";
 import { useAppContext } from "../../contexts/AppContext";
 
 export default function PreviewOrder() {
-  const { cart, calculateCartTotal } = useAppContext();
-  const { subTotal, total, tax, shipping } = calculateCartTotal();
+  const { cart } = useAppContext();
 
   return (
-    <div>
-      {cart.map((cartItem, index) => (
-        <div key={index}>
-          {cartItem.product.id}
-          <label>cantidad</label>
-          {cartItem.quantity}
+    <div className="preview_order_container">
+      <SectionHeader title="Verify your order details" />
+      <div className="row preview_order">
+        <div className="col-8">
+          {cart.map((cartItem, index) => (
+            <ProductShowcase key={index} product={cartItem.product} />
+          ))}
         </div>
-      ))}
-      Sub total: {subTotal}
-      Tax: {tax}% Shipping : {shipping}
-      Total: {total}
-      <Link to="../payment-method">Continue</Link>
+        <div className="col">
+          <CartSummary
+            actionButton={{ text: "Continue", link: "../payment-method" }}
+          />
+        </div>
+      </div>
     </div>
   );
 }

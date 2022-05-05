@@ -30,7 +30,7 @@ export default function ModalForm({
   };
   return (
     <>
-      <button type="button" className="btn btn-primary" onClick={openModal}>
+      <button type="button" className="btn btn-dark" onClick={openModal}>
         {actionButtonText}
       </button>
       <div ref={modalRef} className="modal fade">
@@ -61,14 +61,14 @@ export default function ModalForm({
             <div className="modal-footer">
               <button
                 type="button"
-                className="btn btn-secondary"
+                className="btn btn-outline-secondary"
                 onClick={closeModal}
               >
                 Close
               </button>
               <input
                 type="submit"
-                className="btn btn-primary"
+                className="btn btn-dark"
                 value="Save changes"
                 form={id}
               />

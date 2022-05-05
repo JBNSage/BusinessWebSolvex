@@ -6,6 +6,7 @@ import { date, number, object, string } from "yup";
 import ModalForm from "./ModalForm";
 import { TextInput } from "./forms/inputs";
 import moment from "moment";
+import { getLast4Digits } from "../utilities/parsers";
 
 export default function ShowPaymentMethods() {
   const { cards, getCards, addCard, deleteCard, editCard } = useCardsManager();
@@ -57,18 +58,32 @@ export default function ShowPaymentMethods() {
   );
 
   return (
-    <div>
+    <div className="row flex-column gap-3">
       {cards?.map((card, index) => (
         <div
           key={index}
+          className="payment_method_item rounded overflow-hidden"
           onClick={
             location.pathname == "/checkout/payment-method"
               ? () => setPaymentMethod(card)
               : undefined
           }
         >
-          {console.log(card)}
-          card.id
+          <div className="row">
+            <div className="col-12">
+              <p className="fw-bold text-capitalize d-inline">Card holder: </p>
+              <p className="fs-6 text-uppercase d-inline">{card.name}</p>
+            </div>
+            <div className="col-12">
+              <p className="fw-bold text-capitalize d-inline">
+                Last 4 digits:{" "}
+              </p>
+              <p className="fs-6 text-uppercase d-inline">
+                {getLast4Digits(card.number)}
+              </p>
+            </div>
+          </div>
+
           {location.pathname == "/profile/payment-methods" && (
             <>
               <button onClick={() => deleteCard(card.id)}>

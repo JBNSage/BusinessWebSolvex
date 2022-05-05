@@ -1,10 +1,10 @@
 import React from "react";
-import { ShowPaymentMethods } from "../../components";
+import { SectionHeader, ShowPaymentMethods } from "../../components";
 
 export default function PaymentMethod() {
   return (
     <div>
-      <h2>Select payment method</h2>
+      <SectionHeader title="Select payment method" />
       <ShowPaymentMethods />
     </div>
   );

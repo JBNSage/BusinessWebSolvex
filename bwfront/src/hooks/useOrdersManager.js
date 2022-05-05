@@ -2,6 +2,7 @@ import React from "react";
 import { useAppContext } from "../contexts/AppContext";
 import { apiCalls } from "../utilities/apiCalls";
 import { paymentMethodStorage } from "../utilities/constants";
+import { getLast4Digits } from "../utilities/parsers";
 import useAuthentication from "./useAuthentication";
 import useProductsManager from "./useProductsManager";
 
@@ -45,7 +46,7 @@ export default function useOrdersManager() {
     const body = {
       userId: user.id,
       state: "shipping",
-      card: payment_method.number.substr(payment_method.number.length - 4),
+      card: getLast4Digits(payment_method.number),
       estimatedArrival: new Date(),
       total: parseInt(total.replace(",", "")),
       shippingCost: shipping,

@@ -1,17 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../../contexts/AppContext";
-import { MoneyFormat, ProductShowcase, SectionHeader } from "../../components";
+import {
+  CartSummary,
+  MoneyFormat,
+  ProductShowcase,
+  SectionHeader,
+} from "../../components";
 import { numberWithCommas } from "../../utilities/parsers";
 
 export default function Cart() {
-  const { cart, updateQuantity, removeFromCart, calculateCartTotal } =
-    useAppContext();
+  const { cart, updateQuantity, removeFromCart } = useAppContext();
 
   if (!cart || cart.length == 0) {
     return <div>The cart is empty</div>;
   }
-  const { subTotal, total, tax, shipping } = calculateCartTotal();
 
   const decreaseQuantity = (inputId, cartItem) => {
     const input = document.getElementById(inputId);
@@ -121,28 +124,12 @@ export default function Cart() {
             // </div>
           ))}
         </div>
-        <div className="cart_summary_container col ">
-          <div className="cart_summary p-3 rounded d-flex flex-column align-items-end">
-            <p className="fw-bold text-capitalize"> Sub total: {subTotal}</p>
-            <p className="fw-bold text-capitalize">Tax: {tax}%</p>
-
-            <MoneyFormat
-              money={shipping}
-              label={
-                <p className="fw-bold text-capitalize">Shipping: &nbsp;</p>
-              }
-            />
-
-            <MoneyFormat
-              money={total}
-              label={<p className="fw-bold text-capitalize">Total: &nbsp;</p>}
-            />
-
-            <Link to="./preview-order" className="btn btn-dark">
-              Proceed to checkout
-            </Link>
-          </div>
-        </div>
+        <CartSummary
+          actionButton={{
+            text: "Proceed to checkout",
+            link: "./preview-order",
+          }}
+        />
       </div>
     </div>
   );
