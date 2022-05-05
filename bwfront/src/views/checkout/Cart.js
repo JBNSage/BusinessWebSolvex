@@ -52,7 +52,7 @@ export default function Cart() {
                 <p className="fw-bold text-capitalize text-end">
                   Available: {cartItem.product.quantity}
                 </p>,
-                <div className="row">
+                <div className="row justify-content-end">
                   <div className="col-auto p-0 ">
                     <span
                       class="material-icons-outlined btn btn-light"
@@ -63,7 +63,7 @@ export default function Cart() {
                       remove
                     </span>
                   </div>
-                  <div className="col p-0 ">
+                  <div className="col-5 p-0 ">
                     <input
                       id={`quantityInput_${index}`}
                       type="number"
