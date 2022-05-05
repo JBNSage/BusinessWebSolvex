@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./siteContentContainer.css";
-import { useCartManager } from "../../hooks";
 import { useAppContext } from "../../contexts/AppContext";
+import SectionHeader from "../sectionHeader/SectionHeader";
 
 export default function SiteHeader() {
   const { cart } = useAppContext();

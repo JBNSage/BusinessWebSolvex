@@ -13,7 +13,7 @@ export default function Home() {
       {categories &&
         categories.map((category) => (
           <Link
-            to={`./products?category=${category.id}`}
+            to={`../products/${category.id}`}
             className="home_category col-3 d-flex justify-content-center"
           >
             <figure>

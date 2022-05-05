@@ -13,12 +13,13 @@ export default function useProductsManager() {
     });
   };
 
-  const getProductById = (id) => {
-    apiCalls.getProductById(id).then((response) => {
-      if (response.data) {
-        setSingleProduct(response.data);
-      }
-    });
+  const getProductById = async (id) => {
+    const response = await apiCalls.getProductById(id);
+
+    if (response.data) {
+      setSingleProduct(response.data);
+    }
+    return response;
   };
 
   const updateProducts = (products) => {

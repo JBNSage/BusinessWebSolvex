@@ -14,7 +14,7 @@ export default function AppRoutes() {
             <Route path="/" element={<SiteContentContainer />}>
               <Route index element={<Views.Home />} />
               <Route path="categories" element={<Views.Categories />} />
-              <Route path="products">
+              <Route path="products/:categoryId">
                 <Route index element={<Views.Products />} />
                 <Route
                   path="product-details/:productId"
