@@ -45,8 +45,32 @@ body {
 
 .product_item .row,
 .cart_summary_container .cart_summary,
-.payment_method_item {
+.payment_method_item,
+.orders_container .order_item,
+.accordion *,
+.accordion-button:not(.collapsed) {
   background-color: #fbfbfb;
+}
+
+.accordion-button:not(.collapsed) {
+  color: #000;
+}
+
+.accordion-button::after {
+}
+
+.accordion * {
+  border: 0;
+}
+
+.accordion-button:focus {
+  border: 0;
+  border-color: #fbfbfb;
+  box-shadow: unset;
+}
+
+.order_item .estimated_arrival {
+  background-color: #c4c4c4;
 }
 
 .product_details_container .product_picture {

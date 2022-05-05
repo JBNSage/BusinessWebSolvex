@@ -19,9 +19,11 @@ export default function Products() {
   return (
     <div className="products_container">
       <SectionHeader title="Products" />
-      {products?.map((product, index) => (
-        <ProductShowcase key={index} product={product} />
-      ))}
+      <div className="row flex-column gap-3 products_container">
+        {products?.map((product, index) => (
+          <ProductShowcase key={index} product={product} />
+        ))}
+      </div>
     </div>
   );
 }

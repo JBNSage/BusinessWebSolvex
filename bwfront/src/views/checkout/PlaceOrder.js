@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { SectionHeader } from "../../components";
 import { useOrdersManager } from "../../hooks";
 
 export default function PlaceOrder() {
@@ -21,7 +22,7 @@ export default function PlaceOrder() {
   }, []);
 
   if (placingOrder) {
-    return <div>Creando orden</div>;
+    return <SectionHeader title="Creando orden..." />;
   }
 
   return (

@@ -9,6 +9,7 @@ export default function ProductShowcase({
   goToDetails = true,
   extraFields,
 }) {
+  console.log("🚀 ~ file: ProductShowcase.js ~ line 12 ~ product", product);
   const RenderContainer = ({ children, ...props }) => {
     if (!goToDetails) {
       return <div {...props}>{children}</div>;

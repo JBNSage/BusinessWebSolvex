@@ -28,7 +28,7 @@ namespace bwback.Controllers
         [EnableQuery]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
-            return await _context.Orders.Include("OrderDetails").ToListAsync();
+            return await _context.Orders.Include("OrderDetails").Include("OrderDetails.Product").Include("OrderDetails.Product.Provider").ToListAsync();
         }
 
         // GET: api/Orders/5
