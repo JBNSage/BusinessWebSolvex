@@ -16,14 +16,14 @@ export default function Orders() {
       <div className="row order_items_container flex-column spaced">
         {orders?.map((order) => (
           <div className="col order_item rounded overflow-hidden">
-            <div className="row estimated_arrival">
+            <div className="row estimated_arrival align-items-center p-2">
               <div className="col-auto">
                 <label className="fw-bold">
                   {order.arrivedAt ? "Arrived at" : "Estimated arrival: "}
                 </label>
               </div>
               <div className="col-auto">
-                <p>
+                <p className="m-0">
                   {order.arrivedAt
                     ? moment(order.arrivedAt).format("MM-DD-YYYY")
                     : moment(order.estimatedArrival).format("MM-DD-YYYY")}
