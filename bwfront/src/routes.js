@@ -5,7 +5,7 @@ import { useAuthentication } from "./hooks";
 import { SiteContentContainer } from "./components";
 
 export default function AppRoutes() {
-  const { login, user, register } = useAuthentication();
+  const { login, user, register, logOut } = useAuthentication();
   return (
     <BrowserRouter>
       <Routes>
@@ -30,7 +30,7 @@ export default function AppRoutes() {
                 <Route path="my-orders" element={<Views.Orders />} />
                 <Route
                   path="personal-information"
-                  element={<Views.PersonalInformation />}
+                  element={<Views.PersonalInformation logOut={logOut} />}
                 />
               </Route>
               <Route path="checkout">

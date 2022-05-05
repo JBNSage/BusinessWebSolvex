@@ -9,7 +9,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="home_categories_container row align-items-end justify-content-around  ">
+    <div className="home_categories_container spaced row align-items-end justify-content-around  ">
       {categories &&
         categories.map((category) => (
           <Link

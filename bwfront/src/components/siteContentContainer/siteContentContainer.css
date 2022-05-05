@@ -41,8 +41,3 @@ footer .footer_item {
 #root > footer {
   height: 9rem;
 }
-
-main.container {
-  padding-bottom: 10rem;
-  max-width: 1050px;
-}

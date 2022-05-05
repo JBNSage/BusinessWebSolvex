@@ -20,7 +20,7 @@ export default function Products() {
   return (
     <div className="products_container">
       <SectionHeader title="Products" />
-      <div className="row flex-column gap-3 products_container">
+      <div className="row flex-column gap-3 products_container spaced">
         {products?.map((product, index) => (
           <ProductShowcase key={index} product={product} />
         ))}

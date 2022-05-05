@@ -77,11 +77,7 @@ body {
   height: auto;
 }
 
-.product_details_container .product_details,
-.cart_container .cart_items,
-.preview_order_container .preview_order,
-.addresses_container,
-.personal_information {
+.spaced {
   padding-top: 50px;
   padding-bottom: 150px;
 }

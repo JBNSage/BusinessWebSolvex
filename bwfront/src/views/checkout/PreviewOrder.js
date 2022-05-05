@@ -9,7 +9,7 @@ export default function PreviewOrder() {
   return (
     <div className="preview_order_container">
       <SectionHeader title="Verify your order details" />
-      <div className="row preview_order">
+      <div className="row preview_order spaced">
         <div className="col-8">
           {cart.map((cartItem, index) => (
             <ProductShowcase key={index} product={cartItem.product} />

@@ -89,9 +89,9 @@ export default function Addresses() {
   );
 
   return (
-    <div className="addresses_container">
+    <div className="addresses_container ">
       <SectionHeader title="Addresses" />
-      <div className="addresses_container ">
+      <div className="addresses_container spaced">
         {!addresses || addresses.length == 0
           ? "Aún no tiene direcciones"
           : addresses.map((address, index) => (

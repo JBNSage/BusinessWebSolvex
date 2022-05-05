@@ -44,7 +44,7 @@ export default function Cart() {
   return (
     <div className="cart_container">
       <SectionHeader title="cart" />
-      <div className="row cart_items">
+      <div className="row cart_items spaced">
         <div className="col-8">
           {cart.map((cartItem, index) => (
             <ProductShowcase

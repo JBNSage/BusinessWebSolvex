@@ -58,7 +58,7 @@ export default function ShowPaymentMethods() {
   );
 
   return (
-    <div className="row flex-column gap-3">
+    <div className="row flex-column gap-3 spaced">
       {cards?.map((card, index) => (
         <div
           key={index}

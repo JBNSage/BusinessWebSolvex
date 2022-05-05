@@ -7,3 +7,4 @@ export { default as RatingIndicator } from "./ratingIndicator/RatingIndicator";
 export { default as ProductShowcase } from "./ProductShowcase";
 export { default as MoneyFormat } from "./MoneyFormat";
 export { default as CartSummary } from "./CartSummary";
+export { default as AppContainer } from "./appContainer/AppContainer";

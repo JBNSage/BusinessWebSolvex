@@ -13,7 +13,7 @@ export default function Orders() {
   return (
     <div className="orders_container">
       <SectionHeader title="My orders" />
-      <div className="row order_items_container flex-column ">
+      <div className="row order_items_container flex-column spaced">
         {orders?.map((order) => (
           <div className="col order_item rounded overflow-hidden">
             <div className="row estimated_arrival">

@@ -3,6 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import "./siteContentContainer.css";
 import { useAppContext } from "../../contexts/AppContext";
 import SectionHeader from "../sectionHeader/SectionHeader";
+import AppContainer from "../appContainer/AppContainer";
 
 export default function SiteHeader() {
   const { cart } = useAppContext();
@@ -50,9 +51,9 @@ export default function SiteHeader() {
           </div>
         </div>
       </header>
-      <main className="container pt-5  mt-5">
+      <AppContainer>
         <Outlet />
-      </main>
+      </AppContainer>
       <footer className="row bg-dark container-fluid justify-content-between m-0 position-absolute bottom-0 p-4">
         <div className="col-auto">
           <menu className="list-group m-0">

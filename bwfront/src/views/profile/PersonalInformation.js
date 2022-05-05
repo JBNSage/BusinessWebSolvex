@@ -5,7 +5,7 @@ import { TextInput } from "../../components/forms/inputs";
 import { AlertFormError } from "../../components";
 import { useAuthentication } from "../../hooks";
 
-export default function PersonalInformation() {
+export default function PersonalInformation({ logOut }) {
   const [raiseAlert, setRaiseAlert] = React.useState();
   const { user, updateUser } = useAuthentication();
 
@@ -19,7 +19,7 @@ export default function PersonalInformation() {
   };
 
   return (
-    <div className="personal_information">
+    <div className="personal_information spaced">
       <Formik
         validationSchema={validationSchema}
         initialValues={{
@@ -41,9 +41,22 @@ export default function PersonalInformation() {
           <TextInput placeholder="Phone" label="Phone" name="phone" />
 
           {raiseAlert && <AlertFormError message={"Error"} />}
-          <button type="submit" className="btn btn-dark mt-3">
-            Save
-          </button>
+          <div className="row justify-content-between">
+            <div className="col-auto">
+              <button type="submit" className="btn btn-dark mt-3">
+                Save
+              </button>
+            </div>
+            <div className="col-auto">
+              <button
+                type="button"
+                onClick={logOut}
+                className="btn btn-dark mt-3"
+              >
+                Log out
+              </button>
+            </div>
+          </div>
         </Form>
       </Formik>
     </div>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Profile() {
   return (
-    <div className="profile_options">
+    <div className="profile_options spaced">
       <div className="row profile_options_container">
         {profileOptions.map((option, index) => (
           <Link

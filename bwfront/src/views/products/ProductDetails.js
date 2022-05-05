@@ -38,7 +38,7 @@ export default function ProductDetails() {
         rightComponent={<RatingIndicator rating={singleProduct.rating} />}
       />
 
-      <div className="product_details">
+      <div className="product_details spaced">
         <div className="row">
           <div className="col">
             <figure className="product_picture_container">

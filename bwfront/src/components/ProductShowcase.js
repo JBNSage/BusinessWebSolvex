@@ -15,7 +15,7 @@ export default function ProductShowcase({
     }
 
     return (
-      <Link {...props} to={`./product-details/${product.id}`}>
+      <Link {...props} to={`/products/product-details/${product.id}`}>
         {children}
       </Link>
     );

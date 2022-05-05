@@ -38,7 +38,7 @@ export default function useAuthentication() {
     }
   };
 
-  const logout = () => {
+  const logOut = () => {
     setUser(undefined);
     sessionStorage.removeItem(userStorage);
   };
@@ -62,7 +62,7 @@ export default function useAuthentication() {
   return {
     login,
     register,
-    logout,
+    logOut,
     resetPassword,
     user,
     storeUser,
