@@ -5,8 +5,9 @@ export const apiCalls = {
   register: (body) => postData(apiRoutes.users, body),
   login: (body) => postData(apiRoutes.login, body),
   updateUser: (userId, body) => updateData(apiRoutes.users, userId, body),
-  getProducts: (category) =>
+  getProductsByCategory: (category) =>
     getData(apiRoutes.products + `?$filter=categoryId eq ${category}`),
+  getProducts: () => getData(apiRoutes.products),
   getProductById: (id) => getData(apiRoutes.products + "/" + id),
   updateProducts: (products) =>
     updateData(apiRoutes.updateManyProducts, undefined, products),

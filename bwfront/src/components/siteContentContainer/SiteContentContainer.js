@@ -10,7 +10,18 @@ export default function SiteHeader() {
   return (
     <>
       <header className="container pt-4">
-        <div className="row justify-content-end align-items-center">
+        <div className="row justify-content-between align-items-center">
+          <div className="navigation_col col-auto z-index-1 ">
+            <nav className="list-group list-group-horizontal mt-0">
+              {navigationLinks.map((link, index) => (
+                <li key={index} className="header_list_item me-2">
+                  <Link to={link.link} className="fw-bold text-capitalize">
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </nav>
+          </div>
           <div className="logo_col position-absolute start-50 w-auto text-uppercase ">
             <Link to="/">
               <h1 className="fw-bold m-0">EC</h1>
@@ -18,13 +29,15 @@ export default function SiteHeader() {
           </div>
           <div className="account_col col-auto z-index-1 ">
             <menu className="list-group list-group-horizontal mt-0">
-              <li className="header_list_item">
+              <li className="header_list_item position-relative">
                 <Link to="checkout">
                   <span className="material-icons-outlined fs-3">
                     shopping_cart
                   </span>
                   {cart?.length > 0 && (
-                    <span className="badge bg-secondary">{cart?.length}</span>
+                    <span className="badge bg-secondary rounded-circle">
+                      {cart?.length}
+                    </span>
                   )}
                 </Link>
               </li>
@@ -68,3 +81,14 @@ export default function SiteHeader() {
     </>
   );
 }
+
+const navigationLinks = [
+  {
+    name: "menu",
+    link: "/",
+  },
+  {
+    name: "products",
+    link: "/products",
+  },
+];

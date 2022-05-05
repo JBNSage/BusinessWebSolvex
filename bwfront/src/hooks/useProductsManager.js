@@ -6,11 +6,19 @@ export default function useProductsManager() {
   const [singleProduct, setSingleProduct] = useState();
 
   const getProducts = (category) => {
-    apiCalls.getProducts(category).then((response) => {
-      if (response.data) {
-        setProducts(response.data);
-      }
-    });
+    if (category) {
+      apiCalls.getProductsByCategory(category).then((response) => {
+        if (response.data) {
+          setProducts(response.data);
+        }
+      });
+    } else {
+      apiCalls.getProducts().then((response) => {
+        if (response.data) {
+          setProducts(response.data);
+        }
+      });
+    }
   };
 
   const getProductById = async (id) => {

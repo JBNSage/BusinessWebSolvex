@@ -15,6 +15,12 @@ footer .footer_item {
   margin-left: 10px;
 }
 
+.header_list_item .badge {
+  position: absolute;
+  top: -25%;
+  right: -50%;
+}
+
 .footer_list_item {
   font-size: 0.9rem;
 }

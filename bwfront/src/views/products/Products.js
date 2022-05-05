@@ -10,11 +10,12 @@ import {
 
 export default function Products() {
   const { categoryId } = useParams();
+
   const { products, getProducts } = useProductsManager();
 
   React.useEffect(() => {
     getProducts(categoryId);
-  }, []);
+  }, [categoryId]);
 
   return (
     <div className="products_container">

@@ -49,15 +49,13 @@ body {
 .orders_container .order_item,
 .accordion *,
 .accordion-button:not(.collapsed),
-.addresses_container .address_item {
+.addresses_container .address_item,
+.profile_options_item {
   background-color: #fbfbfb;
 }
 
 .accordion-button:not(.collapsed) {
   color: #000;
-}
-
-.accordion-button::after {
 }
 
 .accordion * {
@@ -86,6 +84,17 @@ body {
 .personal_information {
   padding-top: 50px;
   padding-bottom: 150px;
+}
+
+.profile_options_item .profile_icon {
+  font-size: 150px;
+  color: #c4c4c4;
+}
+
+.profile_options a,
+.navigation_col a {
+  color: #000;
+  text-decoration: none;
 }
 
 /* Chrome, Safari, Edge, Opera */
