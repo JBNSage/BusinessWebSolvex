@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ModalForm } from "../../components";
+import { ModalForm, SectionHeader } from "../../components";
 import { SelectInput, TextInput } from "../../components/forms/inputs";
 import {
   useAddressesManager,
@@ -89,55 +89,70 @@ export default function Addresses() {
   );
 
   return (
-    <div>
-      {!addresses || addresses.length == 0
-        ? "Aún no tiene direcciones"
-        : addresses.map((address, index) => (
-            <div key={index}>
-              {address.id}
-              <button
-                onClick={() => {
-                  deleteAddress(address.id);
-                }}
+    <div className="addresses_container">
+      <SectionHeader title="Addresses" />
+      <div className="addresses_container ">
+        {!addresses || addresses.length == 0
+          ? "Aún no tiene direcciones"
+          : addresses.map((address, index) => (
+              <div
+                key={index}
+                className="address_item rounded overflow-hidden p-2"
               >
-                delete address
-              </button>
-              <ModalForm
-                id={`editAddress-${address.id}`}
-                onOpen={() => getCountryCities(address.city.countryId)}
-                title="Edit address"
-                values={{
-                  addressId: address.id,
-                  userId: user.id,
-                  street: address.street,
-                  building: address.building,
-                  postalCode: address.postalCode,
-                  cityId: address.cityId,
-                }}
-                callback={handleFormSubmitOnUpdate}
-                validationSchema={validationSchema}
-                actionButtonText="Edit address"
-              >
-                {inputs}
-              </ModalForm>
-            </div>
-          ))}
-      <ModalForm
-        id="addAddress"
-        title="Add address"
-        values={{
-          userId: user.id,
-          street: "",
-          building: "",
-          postalCode: "",
-          cityId: "",
-        }}
-        callback={handleFormSubmitOnCreate}
-        validationSchema={validationSchema}
-        actionButtonText="Add address"
-      >
-        {inputs}
-      </ModalForm>
+                <div className="row">
+                  <div className="col text-capitalize">{`${address.street}, ${address.building}, ${address.city.name}`}</div>
+                </div>
+
+                <div className="mt-2">
+                  <ModalForm
+                    id={`editAddress-${address.id}`}
+                    onOpen={() => getCountryCities(address.city.countryId)}
+                    title="Edit address"
+                    values={{
+                      addressId: address.id,
+                      userId: user.id,
+                      street: address.street,
+                      building: address.building,
+                      postalCode: address.postalCode,
+                      cityId: address.cityId,
+                    }}
+                    callback={handleFormSubmitOnUpdate}
+                    validationSchema={validationSchema}
+                    actionButtonText="Edit address"
+                  >
+                    {inputs}
+                  </ModalForm>
+                  <button
+                    className="btn btn-dark ms-2"
+                    onClick={() => {
+                      deleteAddress(address.id);
+                    }}
+                  >
+                    delete address
+                  </button>
+                </div>
+              </div>
+            ))}
+
+        <div className="add_address mt-3">
+          <ModalForm
+            id="addAddress"
+            title="Add address"
+            values={{
+              userId: user.id,
+              street: "",
+              building: "",
+              postalCode: "",
+              cityId: "",
+            }}
+            callback={handleFormSubmitOnCreate}
+            validationSchema={validationSchema}
+            actionButtonText="Add address"
+          >
+            {inputs}
+          </ModalForm>
+        </div>
+      </div>
     </div>
   );
 }

@@ -19,26 +19,34 @@ export default function PersonalInformation() {
   };
 
   return (
-    <Formik
-      validationSchema={validationSchema}
-      initialValues={{
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        phone: user.phone,
-      }}
-      onSubmit={handleSubmit}
-    >
-      <Form>
-        <TextInput placeholder="Name" label="Name" name="firstName" />
-        <TextInput placeholder="Last name" label="Last name" name="lastName" />
-        <TextInput placeholder="Email" label="Email" name="email" />
-        <TextInput placeholder="Phone" label="Phone" name="phone" />
+    <div className="personal_information">
+      <Formik
+        validationSchema={validationSchema}
+        initialValues={{
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          phone: user.phone,
+        }}
+        onSubmit={handleSubmit}
+      >
+        <Form>
+          <TextInput placeholder="Name" label="Name" name="firstName" />
+          <TextInput
+            placeholder="Last name"
+            label="Last name"
+            name="lastName"
+          />
+          <TextInput placeholder="Email" label="Email" name="email" />
+          <TextInput placeholder="Phone" label="Phone" name="phone" />
 
-        {raiseAlert && <AlertFormError message={"Error"} />}
-        <button type="submit">Guardar</button>
-      </Form>
-    </Formik>
+          {raiseAlert && <AlertFormError message={"Error"} />}
+          <button type="submit" className="btn btn-dark mt-3">
+            Save
+          </button>
+        </Form>
+      </Formik>
+    </div>
   );
 }
 

@@ -48,7 +48,8 @@ body {
 .payment_method_item,
 .orders_container .order_item,
 .accordion *,
-.accordion-button:not(.collapsed) {
+.accordion-button:not(.collapsed),
+.addresses_container .address_item {
   background-color: #fbfbfb;
 }
 
@@ -80,7 +81,9 @@ body {
 
 .product_details_container .product_details,
 .cart_container .cart_items,
-.preview_order_container .preview_order {
+.preview_order_container .preview_order,
+.addresses_container,
+.personal_information {
   padding-top: 50px;
   padding-bottom: 150px;
 }

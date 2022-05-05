@@ -69,7 +69,7 @@ export default function ShowPaymentMethods() {
               : undefined
           }
         >
-          <div className="row">
+          <div className="row gap-2">
             <div className="col-12">
               <p className="fw-bold text-capitalize d-inline">Card holder: </p>
               <p className="fs-6 text-uppercase d-inline">{card.name}</p>
@@ -85,10 +85,7 @@ export default function ShowPaymentMethods() {
           </div>
 
           {location.pathname == "/profile/payment-methods" && (
-            <>
-              <button onClick={() => deleteCard(card.id)}>
-                Delete payment method
-              </button>
+            <div className="mt-2">
               <ModalForm
                 id={`editPaymentMethod-${card.id}`}
                 title="Edit payment method"
@@ -108,7 +105,13 @@ export default function ShowPaymentMethods() {
               >
                 {inputs}
               </ModalForm>
-            </>
+              <button
+                className="btn btn-dark ms-2"
+                onClick={() => deleteCard(card.id)}
+              >
+                Delete payment method
+              </button>
+            </div>
           )}
         </div>
       ))}
