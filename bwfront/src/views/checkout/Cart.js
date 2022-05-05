@@ -41,7 +41,7 @@ export default function Cart() {
   return (
     <div className="cart_container">
       <SectionHeader title="cart" />
-      <div className="row">
+      <div className="row cart_items">
         <div className="col-8">
           {cart.map((cartItem, index) => (
             <ProductShowcase
@@ -63,7 +63,7 @@ export default function Cart() {
                       remove
                     </span>
                   </div>
-                  <div className="col-5 p-0 ">
+                  <div className="col-5 p-0">
                     <input
                       id={`quantityInput_${index}`}
                       type="number"
@@ -91,6 +91,12 @@ export default function Cart() {
                     </span>
                   </div>
                 </div>,
+                <button
+                  className="btn btn-outline-secondary w-75 me-2"
+                  onClick={() => removeFromCart(cartItem.product.id)}
+                >
+                  Remove from cart
+                </button>,
               ]}
             />
             // <div key={index}>
